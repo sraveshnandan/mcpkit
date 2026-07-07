@@ -17,6 +17,15 @@
   --danger: #cf5537;
   --terminal: #0e0a17;
   --terminal-ink: #f5f1ff;
+  --color-fd-primary: var(--signal);
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-accent: color-mix(in srgb, var(--signal) 10%, var(--bg));
+  --color-fd-accent-foreground: var(--ink);
+  --color-fd-border: var(--line);
+  --color-fd-card: var(--bg-elevated);
+  --color-fd-muted: var(--panel);
+  --color-fd-popover: var(--bg-elevated);
+  --color-fd-background: var(--bg);
 }
 
 .dark {
@@ -34,6 +43,15 @@
   --danger: #f07a5c;
   --terminal: #090612;
   --terminal-ink: #f2ecff;
+  --color-fd-primary: var(--signal);
+  --color-fd-primary-foreground: #0d0a15;
+  --color-fd-accent: color-mix(in srgb, var(--signal) 12%, var(--bg));
+  --color-fd-accent-foreground: var(--ink);
+  --color-fd-border: var(--line);
+  --color-fd-card: var(--bg-elevated);
+  --color-fd-muted: var(--panel);
+  --color-fd-popover: var(--bg-elevated);
+  --color-fd-background: var(--bg);
 }
 
 @theme inline {
@@ -147,14 +165,71 @@ main > section:nth-of-type(6) {
   animation: soft-float 4.5s ease-in-out infinite;
 }
 
+[data-docs-body] {
+  line-height: 1.75;
+}
+
+[data-docs-body] h2,
+[data-docs-body] h3,
+[data-docs-body] h4 {
+  scroll-margin-top: 5rem;
+  letter-spacing: -0.03em;
+}
+
+[data-docs-body] p,
+[data-docs-body] li {
+  color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+}
+
+[data-docs-body] a {
+  color: var(--signal-strong);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+[data-docs-body] a:hover {
+  color: var(--ink);
+}
+
 [data-docs-body] pre,
 .prose pre {
   border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 90%, transparent);
+  box-shadow: 0 16px 50px rgba(18, 19, 26, 0.08);
 }
 
 [data-docs-body] code,
 .prose code {
   font-family: var(--font-mono), monospace;
+}
+
+[data-docs-body] :not(pre) > code,
+.prose :not(pre) > code {
+  border-radius: 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
+  background: color-mix(in srgb, var(--panel) 72%, transparent);
+  padding: 0.18rem 0.42rem;
+  font-size: 0.92em;
+}
+
+[data-docs-body] table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+}
+
+[data-docs-body] th,
+[data-docs-body] td {
+  white-space: nowrap;
+}
+
+[data-docs-body] blockquote {
+  border-left: 3px solid var(--signal);
+  background: color-mix(in srgb, var(--signal) 6%, var(--bg));
+  border-radius: 0 1rem 1rem 0;
 }
 
 [data-radix-popper-content-wrapper] {

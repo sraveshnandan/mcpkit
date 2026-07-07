@@ -57,13 +57,13 @@ export function HeroDemo() {
   const current = useMemo(() => stages[active] ?? fallbackStage, [active]);
 
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-4 sm:gap-5">
       <TerminalWindow
         title="command pipeline / quick start"
         className="border-[color:color-mix(in_srgb,var(--signal)_24%,var(--line-strong))] bg-[linear-gradient(180deg,rgba(10,8,16,0.98),rgba(16,12,25,0.98))] shadow-[0_30px_100px_rgba(32,18,62,0.34)]"
       >
-        <div className="space-y-5">
-          <div className="flex flex-wrap items-center gap-2 text-[0.72rem] uppercase tracking-[0.18em] text-white/45">
+        <div className="space-y-4 sm:space-y-5">
+          <div className="flex flex-wrap items-center gap-2 text-[0.68rem] uppercase tracking-[0.16em] text-white/45 sm:text-[0.72rem] sm:tracking-[0.18em]">
             <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1">quick start</span>
             <span className="rounded-full border border-[rgba(159,103,255,0.24)] bg-[rgba(159,103,255,0.14)] px-2.5 py-1 text-[var(--signal-strong)]">
               basic template
@@ -71,15 +71,15 @@ export function HeroDemo() {
             <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1">npm path</span>
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-2 overflow-hidden">
             <div className="text-white/45">$ npm install -g mcpkit-cli</div>
-            <div className="overflow-x-auto whitespace-nowrap text-[0.96rem] sm:text-[1rem]">
+            <div className="overflow-x-auto whitespace-nowrap text-[0.84rem] sm:text-[1rem]">
               <span className="text-[var(--transport)]">$</span>{' '}
               <span>mcpkit init hello-mcp --template basic --package-manager npm --yes</span>
             </div>
           </div>
 
-          <div className="grid gap-4 xl:grid-cols-[0.94fr_1.06fr]">
+          <div className="grid gap-4 2xl:grid-cols-[0.94fr_1.06fr]">
             <div className="grid gap-2.5">
               {stages.map((stage, index) => {
                 const done = index <= active;
@@ -93,7 +93,7 @@ export function HeroDemo() {
                     onFocus={() => setActive(index)}
                     onClick={() => setActive(index)}
                     className={cn(
-                      'grid gap-3 rounded-[1.2rem] border px-3.5 py-3 text-left transition-all duration-250 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--signal)] motion-safe:hover:-translate-y-0.5',
+                      'grid gap-2.5 rounded-[1.2rem] border px-3 py-3 text-left transition-all duration-250 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--signal)] motion-safe:hover:-translate-y-0.5 sm:gap-3 sm:px-3.5',
                       selected
                         ? 'border-[rgba(159,103,255,0.52)] bg-[linear-gradient(90deg,rgba(159,103,255,0.18),rgba(255,255,255,0.03))] shadow-[0_12px_35px_rgba(91,49,196,0.18)]'
                         : done
@@ -108,14 +108,14 @@ export function HeroDemo() {
                         </span>
                         <div>
                           <div className="text-sm font-medium tracking-tight text-white">{stage.title}</div>
-                          <div className="mt-1 text-xs leading-5 text-white/55">{stage.note}</div>
+                          <div className="mt-1 text-[0.72rem] leading-5 text-white/55 sm:text-xs">{stage.note}</div>
                         </div>
                       </div>
                       <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-1 text-[0.68rem] uppercase tracking-[0.18em] text-white/48">
                         {index + 1}
                       </span>
                     </div>
-                    <div className="pl-7 text-[0.72rem] uppercase tracking-[0.16em] text-[var(--signal-strong)]/85">
+                    <div className="pl-7 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--signal-strong)]/85 sm:text-[0.72rem] sm:tracking-[0.16em]">
                       {stage.meta}
                     </div>
                   </button>
@@ -134,12 +134,12 @@ export function HeroDemo() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-display text-[1.85rem] leading-none tracking-[-0.04em] text-white sm:text-[2.05rem]">
+                  <h3 className="font-display text-[1.6rem] leading-none tracking-[-0.04em] text-white sm:text-[2.05rem]">
                     {current.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/66 sm:text-[0.96rem]">{current.detail}</p>
+                  <p className="mt-3 text-sm leading-6 text-white/66 sm:text-[0.96rem] sm:leading-7">{current.detail}</p>
                 </div>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="mt-5 grid gap-3 grid-cols-2">
                   {[
                     { label: 'template', value: 'basic' },
                     { label: 'transport', value: 'stdio' },
@@ -153,7 +153,7 @@ export function HeroDemo() {
                       <div className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-white/42">
                         {item.label}
                       </div>
-                      <div className="mt-1 font-mono text-sm text-white/92">{item.value}</div>
+                      <div className="mt-1 font-mono text-[0.82rem] text-white/92 sm:text-sm">{item.value}</div>
                     </div>
                   ))}
                 </div>

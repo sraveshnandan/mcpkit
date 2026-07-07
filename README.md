@@ -4,50 +4,65 @@
 [![license](https://img.shields.io/npm/l/mcpkit-cli)](./LICENSE)
 [![build](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/sraveshnandan/mcpkit)
 
-> **The create-next-app for MCP servers.** Scaffold, develop, validate, and ship production-ready Model Context Protocol servers in seconds.
+> **The create-next-app for MCP servers.** Build MCP servers with the workflow already wired in.
+
+`mcpkit` is a CLI toolkit for creating and working with TypeScript Model Context Protocol servers. The current repository covers scaffolding, development helpers, testing, validation, diagnostics, lightweight docs generation, builds, publishing, and shell completions.
+
+- Website: [sraveshnandan.github.io/mcpkit](https://sraveshnandan.github.io/mcpkit)
+- Documentation: [sraveshnandan.github.io/mcpkit/docs](https://sraveshnandan.github.io/mcpkit/docs)
+- npm package: [`mcpkit-cli`](https://www.npmjs.com/package/mcpkit-cli)
 
 ---
 
 ## Quick Start
 
+This is the shortest broadly compatible path verified against the current implementation.
+
 ```bash
-# Install mcpkit globally
+# Install the published CLI package
 npm install -g mcpkit-cli
 
-# Create a new MCP server
-mcpkit init my-server
+# Create a working project with the verified basic template
+mcpkit init hello-mcp --template basic --package-manager npm --yes
 
-# Start development
-cd my-server && bun run dev
+# Start the generated server
+cd hello-mcp
+npm run dev
 ```
 
-Open [MCP Inspector](https://modelcontextprotocol.io/inspector) to test your server at `http://localhost:3100`.
+What this does today:
+
+- uses the `basic` template
+- installs dependencies automatically in `--yes` mode
+- generates `.vscode/mcp.json`
+- creates a stdio-first MCP server with a `greet` tool
 
 ---
 
-## Features
+## Why mcpkit
 
-- **4 battle-tested templates** — Choose from basic, HTTP, auth, or full-stack
-- **Zero-config development** — Hot reload, type safety, and automatic restarts
-- **Doctor diagnostics** — Verify your environment is ready for MCP development
-- **Shell completions** — Tab completion for bash, zsh, and fish
-- **Production-ready builds** — Optimized bundles for stdio and HTTP transports
-- **MCP Inspector integration** — Test your server with the official MCP Inspector
+Building the server is only part of the work. `mcpkit` gives you the surrounding workflow too.
+
+- **4 templates** — `basic`, `http`, `auth`, and `full`
+- **Development workflow** — generated watch-mode scripts plus `mcpkit dev`
+- **Testing and validation** — generated Vitest scripts plus `mcpkit test` and `mcpkit validate`
+- **Diagnostics** — `check-env` and `doctor` for environment and project checks
+- **Shell completions** — bash, zsh, and fish
+- **Build and publish flow** — `build` and `ship` for release work
+- **Official inspector integration** — `mcpkit dev --inspect` opens the MCP Inspector
 
 ---
 
 ## Templates
 
-| Template | Transport | Features | Use Case |
-|----------|-----------|----------|----------|
-| `basic` | stdio | Minimal setup, tools, prompts | Getting started, learning |
-| `http` | HTTP/SSE | Home page, endpoints, tools | Web integration |
-| `auth` | HTTP/SSE | OAuth 2.1, PKCE, token storage | Secure servers |
-| `full` | HTTP/SSE | All features combined | Production deployment |
+| Template | Transport | Intended use |
+|----------|-----------|--------------|
+| `basic` | stdio | Learn the MCP shape and start with the fewest moving parts |
+| `http` | Streamable HTTP | Build a remote-style MCP server with HTTP routes |
+| `auth` | HTTP + bearer auth | Add auth-oriented scaffolding for protected `/mcp` access |
+| `full` | HTTP + auth + ops | Start with logging, metrics, health checks, linting, and formatting config |
 
-```bash
-mcpkit init --template http my-api-server
-```
+> Note: the `auth` and `full` templates still need real JWKS-backed configuration for a complete production auth flow.
 
 ---
 
@@ -57,22 +72,32 @@ mcpkit init --template http my-api-server
 |---------|-------------|
 | `mcpkit init` | Initialize a new MCP server project |
 | `mcpkit dev` | Start development server with hot reload |
-| `mcpkit build` | Build for production |
+| `mcpkit build` | Build the MCP server for production |
 | `mcpkit test` | Run tests |
-| `mcpkit validate` | Validate MCP configuration |
-| `mcpkit docs` | Generate documentation |
+| `mcpkit validate` | Validate MCP server configuration |
+| `mcpkit docs` | Generate a single `api.md` documentation file |
 | `mcpkit check-env` | Check environment setup |
-| `mcpkit ship` | Build and publish to npm |
-| `mcpkit doctor` | Run diagnostics |
-| `mcpkit completions` | Install shell completions |
+| `mcpkit ship` | Build and publish the MCP server |
+| `mcpkit doctor` | Check project health and diagnose issues |
+| `mcpkit completions` | Generate or install shell completions |
 
-### Options
+### Verified examples
 
 ```bash
-mcpkit dev --transport http --port 3000
+mcpkit init hello-mcp --template basic --package-manager npm --yes
+mcpkit dev --transport http --port 3100 --inspect
 mcpkit check-env --json
 mcpkit completions --install
 ```
+
+---
+
+## Learn more
+
+- [Quick Start](https://sraveshnandan.github.io/mcpkit/docs/quick-start)
+- [CLI reference](https://sraveshnandan.github.io/mcpkit/docs/cli)
+- [Templates](https://sraveshnandan.github.io/mcpkit/docs/templates)
+- [Troubleshooting](https://sraveshnandan.github.io/mcpkit/docs/help/troubleshooting)
 
 ---
 

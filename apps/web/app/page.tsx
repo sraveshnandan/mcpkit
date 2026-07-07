@@ -78,19 +78,19 @@ export default function HomePage() {
       <main>
         <section className="border-b border-[var(--line)]">
           <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8 lg:py-14">
-            <div className="grid gap-12 rounded-[2.3rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--signal)_6%,var(--bg-elevated)),var(--bg))] px-5 py-7 shadow-[0_26px_90px_rgba(69,38,137,0.10)] sm:px-7 sm:py-9 lg:grid-cols-[minmax(0,0.76fr)_minmax(0,1.24fr)] lg:px-8 lg:py-8 xl:gap-14">
-              <div className="space-y-8 lg:py-4">
+            <div className="grid gap-8 rounded-[2.3rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--signal)_6%,var(--bg-elevated)),var(--bg))] px-5 py-6 shadow-[0_26px_90px_rgba(69,38,137,0.10)] sm:px-7 sm:py-9 lg:grid-cols-[minmax(0,0.76fr)_minmax(0,1.24fr)] lg:gap-12 lg:px-8 lg:py-8 xl:gap-14">
+              <div className="space-y-6 sm:space-y-8 lg:py-4">
                 <SectionLabel>MCP development pipeline</SectionLabel>
                 <div className="space-y-5">
-                  <h1 className="max-w-[8.8ch] font-display text-5xl leading-[0.94] tracking-[-0.055em] text-[var(--ink)] sm:text-6xl lg:text-[3.85rem] xl:text-[4.2rem]">
+                  <h1 className="max-w-[9.2ch] font-display text-[3.6rem] leading-[0.92] tracking-[-0.06em] text-[var(--ink)] sm:text-6xl lg:text-[3.85rem] xl:text-[4.2rem]">
                     Build MCP servers with the workflow already wired in.
                   </h1>
-                  <p className="max-w-lg text-lg leading-8 text-[var(--muted)]">
+                  <p className="max-w-lg text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
                     {site.tagline} Scaffold, develop, test, validate, diagnose, document, build, and ship from one toolkit instead of assembling the workflow yourself.
                   </p>
                 </div>
                 <CommandBlock label="install" command={installCommand} />
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                   <ButtonLink href={site.quickStartUrl}>
                     Quick Start
                     <ArrowRight className="size-4" />
@@ -100,7 +100,7 @@ export default function HomePage() {
                     <GitBranch className="size-4" />
                   </ButtonLink>
                 </div>
-                <div className="flex flex-wrap gap-2 pt-1">
+                <div className="flex flex-wrap gap-2 pt-1 sm:pt-2">
                   {['4 templates', '10 CLI commands', 'bun · npm · pnpm'].map((item) => (
                     <span
                       key={item}
