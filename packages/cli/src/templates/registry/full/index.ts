@@ -283,17 +283,18 @@ import { metrics } from './metrics.js';
 const app = express();
 app.use(express.json());
 
+const SERVER_NAME = '${vars.name}';
 const serverLogger = createChildLogger('server');
 
 // Auth configuration
 const auth = createAuthMiddleware({
   issuer: process.env.AUTH_ISSUER || 'https://auth.example.com',
-  audience: process.env.AUTH_AUDIENCE || '${vars.name}',
+  audience: process.env.AUTH_AUDIENCE || SERVER_NAME,
   jwksUri: process.env.AUTH_JWKS_URI,
 });
 
 const server = new McpServer({
-  name: '${vars.name}',
+  name: SERVER_NAME,
   version: '0.1.0',
 });
 
@@ -310,7 +311,7 @@ server.tool(
       content: [
         {
           type: 'text' as const,
-          text: \`Hello, \${name}! Welcome to \${vars.name}.\`,
+          text: \`Hello, \${name}! Welcome to \${SERVER_NAME}.\`,
         },
       ],
     };
@@ -319,6 +320,23 @@ server.tool(
     return result;
   }
 );
+
+// Home route (no auth required)
+app.get('/', (req, res) => {
+  res.json({
+    name: SERVER_NAME,
+    version: '0.1.0',
+    status: 'running',
+    auth: 'required',
+    endpoints: {
+      mcp: { url: '/mcp', method: 'POST', description: 'MCP protocol endpoint (auth required)' },
+      health: { url: '/health', method: 'GET', description: 'Health check (no auth)' },
+      metrics: { url: '/metrics', method: 'GET', description: 'Metrics (no auth)' },
+    },
+    tools: ['greet'],
+    docs: 'https://modelcontextprotocol.io',
+  });
+});
 
 // Health check endpoint (no auth required)
 app.get('/health', healthCheck('0.1.0'));
@@ -332,7 +350,17 @@ app.get('/metrics', (req, res) => {
 });
 
 // MCP endpoint (auth required)
-app.post('/mcp', auth.middleware(), async (req, res) => {
+app.all('/mcp', auth.middleware(), async (req, res) => {
+  if (req.method === 'GET') {
+    res.json({
+      message: 'MCP endpoint requires POST request',
+      endpoint: '/mcp',
+      method: 'POST',
+      docs: 'https://modelcontextprotocol.io/docs',
+    });
+    return;
+  }
+
   metrics.increment('mcp.requests');
   const start = Date.now();
   
@@ -352,14 +380,15 @@ app.post('/mcp', auth.middleware(), async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3100;
 
 async function main() {
   resetStartTime();
   await auth.initialize();
   
   app.listen(PORT, () => {
-    serverLogger.info({ port: PORT }, '${vars.name} MCP server started');
+    serverLogger.info({ port: PORT }, \`\${SERVER_NAME} MCP server started\`);
+    serverLogger.info(\`Home: http://localhost:\${PORT}/\`);
     serverLogger.info(\`MCP endpoint: http://localhost:\${PORT}/mcp\`);
     serverLogger.info(\`Health check: http://localhost:\${PORT}/health\`);
     serverLogger.info(\`Metrics: http://localhost:\${PORT}/metrics\`);
@@ -473,7 +502,7 @@ Add to \`.vscode/mcp.json\`:
   "servers": {
     "${vars.name}": {
       "type": "http",
-      "url": "http://localhost:3000/mcp",
+      "url": "http://localhost:3100/mcp",
       "headers": {
         "Authorization": "Bearer \${env:AUTH_TOKEN}"
       }
@@ -490,7 +519,7 @@ Add to \`claude_desktop_config.json\`:
 {
   "mcpServers": {
     "${vars.name}": {
-      "url": "http://localhost:3000/mcp",
+      "url": "http://localhost:3100/mcp",
       "headers": {
         "Authorization": "Bearer \${env:AUTH_TOKEN}"
       }
@@ -542,7 +571,7 @@ const generateVscodeMcp = (vars: TemplateVars) => JSON.stringify({
   servers: {
     [vars.name]: {
       type: 'http',
-      url: 'http://localhost:3000/mcp',
+      url: 'http://localhost:3100/mcp',
       headers: {
         Authorization: 'Bearer ${env:AUTH_TOKEN}',
       },

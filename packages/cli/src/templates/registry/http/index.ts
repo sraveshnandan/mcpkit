@@ -60,8 +60,10 @@ import { z } from 'zod';
 const app = express();
 app.use(express.json());
 
+const SERVER_NAME = '${vars.name}';
+
 const server = new McpServer({
-  name: '${vars.name}',
+  name: SERVER_NAME,
   version: '0.1.0',
 });
 
@@ -74,19 +76,44 @@ server.tool(
     content: [
       {
         type: 'text' as const,
-        text: \`Hello, \${name}! Welcome to \${vars.name}.\`,
+        text: \`Hello, \${name}! Welcome to \${SERVER_NAME}.\`,
       },
     ],
   })
 );
 
+// Home route
+app.get('/', (req, res) => {
+  res.json({
+    name: SERVER_NAME,
+    version: '0.1.0',
+    status: 'running',
+    endpoints: {
+      mcp: { url: '/mcp', method: 'POST', description: 'MCP protocol endpoint' },
+      health: { url: '/health', method: 'GET', description: 'Health check' },
+    },
+    tools: ['greet'],
+    docs: 'https://modelcontextprotocol.io',
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', server: '${vars.name}', version: '0.1.0' });
+  res.json({ status: 'ok', server: SERVER_NAME, version: '0.1.0' });
 });
 
 // MCP endpoint
-app.post('/mcp', async (req, res) => {
+app.all('/mcp', async (req, res) => {
+  if (req.method === 'GET') {
+    res.json({
+      message: 'MCP endpoint requires POST request',
+      endpoint: '/mcp',
+      method: 'POST',
+      docs: 'https://modelcontextprotocol.io/docs',
+    });
+    return;
+  }
+
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
   });
@@ -95,10 +122,11 @@ app.post('/mcp', async (req, res) => {
   await transport.handleRequest(req, res, req.body);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3100;
 
 app.listen(PORT, () => {
-  console.error(\`${vars.name} MCP server running on http://localhost:\${PORT}\`);
+  console.error(\`\${SERVER_NAME} MCP server running on http://localhost:\${PORT}\`);
+  console.error(\`Home: http://localhost:\${PORT}/\`);
   console.error(\`MCP endpoint: http://localhost:\${PORT}/mcp\`);
   console.error(\`Health check: http://localhost:\${PORT}/health\`);
 });
@@ -153,7 +181,7 @@ Add to \`.vscode/mcp.json\`:
   "servers": {
     "${vars.name}": {
       "type": "http",
-      "url": "http://localhost:3000/mcp"
+      "url": "http://localhost:3100/mcp"
     }
   }
 }
@@ -167,7 +195,7 @@ Add to \`claude_desktop_config.json\`:
 {
   "mcpServers": {
     "${vars.name}": {
-      "url": "http://localhost:3000/mcp"
+      "url": "http://localhost:3100/mcp"
     }
   }
 }
@@ -205,7 +233,7 @@ const generateVscodeMcp = (vars: TemplateVars) => JSON.stringify({
   servers: {
     [vars.name]: {
       type: 'http',
-      url: 'http://localhost:3000/mcp',
+      url: 'http://localhost:3100/mcp',
     },
   },
 }, null, 2) + '\n';

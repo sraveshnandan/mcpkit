@@ -57,8 +57,10 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 
+const SERVER_NAME = '${vars.name}';
+
 const server = new McpServer({
-  name: '${vars.name}',
+  name: SERVER_NAME,
   version: '0.1.0',
 });
 
@@ -71,7 +73,7 @@ server.tool(
     content: [
       {
         type: 'text' as const,
-        text: \`Hello, \${name}! Welcome to \${vars.name}.\`,
+        text: \`Hello, \${name}! Welcome to \${SERVER_NAME}.\`,
       },
     ],
   })
@@ -80,7 +82,7 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('${vars.name} MCP server running on stdio');
+  console.error(\`\${SERVER_NAME} MCP server running on stdio\`);
 }
 
 main().catch((error) => {

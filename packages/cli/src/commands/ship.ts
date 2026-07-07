@@ -25,6 +25,79 @@ interface ShipOptions {
   verbose: boolean;
 }
 
+function detectPackageManager(projectDir: string): string {
+  // Check package.json first
+  const pkgJsonPath = path.join(projectDir, 'package.json');
+  if (fs.existsSync(pkgJsonPath)) {
+    const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
+    if (pkgJson.packageManager) {
+      const pm = pkgJson.packageManager.split('@')[0];
+      if (['npm', 'pnpm', 'yarn', 'bun'].includes(pm)) {
+        return pm;
+      }
+    }
+  }
+
+  // Check for lock files
+  if (fs.existsSync(path.join(projectDir, 'bun.lockb')) || fs.existsSync(path.join(projectDir, 'bun.lock'))) {
+    return 'bun';
+  }
+  if (fs.existsSync(path.join(projectDir, 'pnpm-lock.yaml'))) {
+    return 'pnpm';
+  }
+  if (fs.existsSync(path.join(projectDir, 'yarn.lock'))) {
+    return 'yarn';
+  }
+  if (fs.existsSync(path.join(projectDir, 'package-lock.json'))) {
+    return 'npm';
+  }
+
+  // Default to npm
+  return 'npm';
+}
+
+function getPublishCommand(packageManager: string): string {
+  switch (packageManager) {
+    case 'bun':
+      return 'bun publish';
+    case 'pnpm':
+      return 'pnpm publish';
+    case 'yarn':
+      return 'yarn publish';
+    case 'npm':
+    default:
+      return 'npm publish';
+  }
+}
+
+function getTestCommand(packageManager: string): string {
+  switch (packageManager) {
+    case 'bun':
+      return 'bun run test';
+    case 'pnpm':
+      return 'pnpm test';
+    case 'yarn':
+      return 'yarn test';
+    case 'npm':
+    default:
+      return 'npm test';
+  }
+}
+
+function getBuildCommand(packageManager: string): string {
+  switch (packageManager) {
+    case 'bun':
+      return 'bun run build';
+    case 'pnpm':
+      return 'pnpm build';
+    case 'yarn':
+      return 'yarn build';
+    case 'npm':
+    default:
+      return 'npm run build';
+  }
+}
+
 async function runShip(options: ShipOptions): Promise<void> {
   const projectDir = process.cwd();
   const pkgJsonPath = path.join(projectDir, 'package.json');
@@ -38,6 +111,9 @@ async function runShip(options: ShipOptions): Promise<void> {
   const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
   const currentVersion = pkgJson.version;
 
+  // Detect package manager
+  const packageManager = detectPackageManager(projectDir);
+  logger.info(`Package manager: ${pc.cyan(packageManager)}`);
   logger.info(`Current version: ${pc.cyan(currentVersion)}`);
 
   if (options.dryRun) {
@@ -57,13 +133,13 @@ async function runShip(options: ShipOptions): Promise<void> {
   try {
     spinner.text = 'Running tests...';
     if (!options.dryRun) {
-      execSync('npx vitest run', { stdio: 'pipe' });
+      execSync(getTestCommand(packageManager), { stdio: 'pipe' });
     }
     logger.debug('Tests passed', options.verbose);
 
     spinner.text = 'Building project...';
     if (!options.dryRun) {
-      execSync('npx tsc', { stdio: 'pipe' });
+      execSync(getBuildCommand(packageManager), { stdio: 'pipe' });
     }
     logger.debug('Build complete', options.verbose);
 
@@ -80,7 +156,7 @@ async function runShip(options: ShipOptions): Promise<void> {
         break;
       case 'patch':
       default:
-        newVersion = `${major}.${minor}.${patch + 1}`;
+        newVersion = `${major}.${minor}.${(patch || 0) + 1}`;
     }
 
     pkgJson.version = newVersion;
@@ -92,7 +168,7 @@ async function runShip(options: ShipOptions): Promise<void> {
 
     spinner.text = 'Publishing to npm...';
     if (!options.dryRun) {
-      execSync('npm publish', { stdio: 'pipe' });
+      execSync(getPublishCommand(packageManager), { stdio: 'pipe' });
     }
     logger.debug('Published to npm', options.verbose);
 
@@ -102,6 +178,7 @@ async function runShip(options: ShipOptions): Promise<void> {
     logger.log(pc.cyan('Release summary:'));
     logger.log(`  ${pc.dim('Version:')} ${pc.green(currentVersion)} → ${pc.green(newVersion)}`);
     logger.log(`  ${pc.dim('Package:')} ${pkgJson.name}`);
+    logger.log(`  ${pc.dim('Manager:')} ${packageManager}`);
 
     if (!options.dryRun) {
       logger.break();

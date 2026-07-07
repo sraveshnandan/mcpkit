@@ -22,7 +22,7 @@ export function registerDevCommand(program: Command): void {
     .option('-e, --entry <entry>', 'Entry file', 'src/index.ts')
     .option('-v, --verbose', 'Verbose output')
     .option('-t, --transport <transport>', 'Transport type (stdio, http)', 'stdio')
-    .option('-p, --port <port>', 'Port number for HTTP transport', '3000')
+    .option('-p, --port <port>', 'Port number for HTTP transport', '3100')
     .option('--inspect', 'Open MCP Inspector in browser')
     .option('--test', 'Run tests on file changes')
     .action(async (options: DevOptions) => {

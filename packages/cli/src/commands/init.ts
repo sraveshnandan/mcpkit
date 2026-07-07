@@ -6,7 +6,7 @@ import path from 'node:path';
 import { logger } from '../utils/logger.js';
 import { createSpinner } from '../utils/spinner.js';
 import { run } from '../utils/exec.js';
-import { getTemplate, getTemplateOptions } from '../templates/index.js';
+import { getTemplate, getTemplateOptions, isValidTemplate, getTemplateNames } from '../templates/index.js';
 import type { TemplateName, TemplateVars } from '../templates/types.js';
 
 export function registerInitCommand(program: Command): void {
@@ -29,71 +29,117 @@ interface InitOptions {
 }
 
 async function runInit(name: string | undefined, options: InitOptions): Promise<void> {
-  p.intro(pc.cyan('Create your MCP Server'));
-
-  const projectName = name || (await p.text({
-    message: 'What is your project name?',
-    placeholder: 'my-mcp-server',
-    validate: (value) => {
-      if (!value) return 'Project name is required';
-      if (!/^[a-z][a-z0-9-]*$/.test(value)) {
-        return 'Must be lowercase alphanumeric with dashes (e.g., my-mcp-server)';
-      }
-    },
-  })) as string;
-
-  if (p.isCancel(projectName)) {
-    p.cancel('Operation cancelled.');
-    process.exit(0);
+  // TTY detection: require TTY or --yes flag for non-interactive mode
+  if (!process.stdin.isTTY && !options.yes) {
+    logger.error('Interactive mode requires a TTY terminal.');
+    logger.info('Use --yes flag to skip prompts and use defaults.');
+    logger.info('Example: mcpkit init my-server --template basic --yes');
+    process.exit(1);
   }
 
-  const description = await p.text({
-    message: 'Project description (optional):',
-    placeholder: 'A powerful MCP server',
-  }) as string;
-
-  if (p.isCancel(description)) {
-    p.cancel('Operation cancelled.');
-    process.exit(0);
+  // Validate template if provided
+  if (options.template && !isValidTemplate(options.template)) {
+    logger.error(`Template '${options.template}' not found.`);
+    logger.info(`Available templates: ${getTemplateNames().join(', ')}`);
+    process.exit(1);
   }
 
-  const template = options.template ? (options.template as TemplateName) : (await p.select({
-    message: 'Choose a template:',
-    options: getTemplateOptions(),
-  })) as TemplateName;
+  let projectName: string;
+  let description: string;
+  let template: TemplateName;
+  let packageManager: string;
+  let installDeps: boolean;
 
-  if (p.isCancel(template)) {
-    p.cancel('Operation cancelled.');
-    process.exit(0);
+  if (options.yes) {
+    // Non-interactive mode: use defaults
+    if (!name) {
+      logger.error('Project name is required in non-interactive mode.');
+      logger.info('Example: mcpkit init my-server --template basic --yes');
+      process.exit(1);
+    }
+    if (!options.template) {
+      logger.error('Template is required in non-interactive mode.');
+      logger.info('Example: mcpkit init my-server --template basic --yes');
+      process.exit(1);
+    }
+
+    projectName = name;
+    description = `A ${name} MCP server`;
+    template = options.template as TemplateName;
+    packageManager = options.packageManager;
+    installDeps = true;
+
+    logger.info(`Creating project: ${pc.cyan(projectName)}`);
+    logger.info(`Template: ${pc.cyan(template)}`);
+    logger.info(`Package manager: ${pc.cyan(packageManager)}`);
+  } else {
+    // Interactive mode
+    p.intro(pc.cyan('Create your MCP Server'));
+
+    projectName = (await p.text({
+      message: 'What is your project name?',
+      placeholder: 'my-mcp-server',
+      validate: (value) => {
+        if (!value) return 'Project name is required';
+        if (!/^[a-z][a-z0-9-]*$/.test(value)) {
+          return 'Must be lowercase alphanumeric with dashes (e.g., my-mcp-server)';
+        }
+      },
+    })) as string;
+
+    if (p.isCancel(projectName)) {
+      p.cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    description = (await p.text({
+      message: 'Project description (optional):',
+      placeholder: 'A powerful MCP server',
+    })) as string;
+
+    if (p.isCancel(description)) {
+      p.cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    template = options.template ? (options.template as TemplateName) : (await p.select({
+      message: 'Choose a template:',
+      options: getTemplateOptions(),
+    })) as TemplateName;
+
+    if (p.isCancel(template)) {
+      p.cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    packageManager = (await p.select({
+      message: 'Choose a package manager:',
+      options: [
+        { value: 'bun', label: 'Bun', hint: 'Fast all-in-one toolkit' },
+        { value: 'npm', label: 'npm', hint: 'Default package manager' },
+        { value: 'pnpm', label: 'pnpm', hint: 'Fast, disk space efficient' },
+      ],
+    })) as string;
+
+    if (p.isCancel(packageManager)) {
+      p.cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    installDeps = await p.confirm({
+      message: 'Install dependencies now?',
+    });
+
+    if (p.isCancel(installDeps)) {
+      p.cancel('Operation cancelled.');
+      process.exit(0);
+    }
   }
 
   const templateConfig = getTemplate(template);
   if (!templateConfig) {
     logger.error(`Template '${template}' not found`);
     process.exit(1);
-  }
-
-  const packageManager = options.yes ? options.packageManager : (await p.select({
-    message: 'Choose a package manager:',
-    options: [
-      { value: 'bun', label: 'Bun', hint: 'Fast all-in-one toolkit' },
-      { value: 'npm', label: 'npm', hint: 'Default package manager' },
-      { value: 'pnpm', label: 'pnpm', hint: 'Fast, disk space efficient' },
-    ],
-  })) as string;
-
-  if (p.isCancel(packageManager)) {
-    p.cancel('Operation cancelled.');
-    process.exit(0);
-  }
-
-  const installDeps = options.yes ? true : await p.confirm({
-    message: 'Install dependencies now?',
-  });
-
-  if (p.isCancel(installDeps)) {
-    p.cancel('Operation cancelled.');
-    process.exit(0);
   }
 
   const projectDir = path.resolve(process.cwd(), projectName);
@@ -129,7 +175,9 @@ async function runInit(name: string | undefined, options: InitOptions): Promise<
       }
     }
 
-    p.outro(pc.green(`Project ${pc.bold(projectName)} created!\n`));
+    if (!options.yes) {
+      p.outro(pc.green(`Project ${pc.bold(projectName)} created!\n`));
+    }
 
     logger.log(pc.cyan('Next steps:'));
     if (!installDeps) {
@@ -142,6 +190,10 @@ async function runInit(name: string | undefined, options: InitOptions): Promise<
     logger.break();
     logger.log(pc.dim('For more info, visit: https://mcpkit.dev'));
   } catch (err) {
+    // Clean up on failure
+    if (fs.existsSync(projectDir)) {
+      fs.rmSync(projectDir, { recursive: true, force: true });
+    }
     spinner.fail('Failed to create project');
     logger.error(err instanceof Error ? err.message : String(err));
     process.exit(1);
