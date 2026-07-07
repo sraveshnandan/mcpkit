@@ -7,6 +7,8 @@ import { registerTestCommand } from './commands/test.js';
 import { registerDocsCommand } from './commands/docs.js';
 import { registerCheckEnvCommand } from './commands/check-env.js';
 import { registerShipCommand } from './commands/ship.js';
+import { registerDoctorCommand } from './commands/doctor.js';
+import { registerCompletionsCommand } from './commands/completions.js';
 
 const VERSION = '0.1.0';
 
@@ -28,6 +30,8 @@ export async function createProgram(): Promise<void> {
   registerDocsCommand(program);
   registerCheckEnvCommand(program);
   registerShipCommand(program);
+  registerDoctorCommand(program);
+  registerCompletionsCommand(program);
 
   program.enablePositionalOptions();
 

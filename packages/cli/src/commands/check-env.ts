@@ -11,6 +11,7 @@ export function registerCheckEnvCommand(program: Command): void {
     .command('check-env')
     .description('Check development environment setup')
     .option('-v, --verbose', 'Verbose output')
+    .option('--json', 'Output results as JSON')
     .action(async (options) => {
       await runCheckEnv(options);
     });
@@ -18,12 +19,19 @@ export function registerCheckEnvCommand(program: Command): void {
 
 interface CheckEnvOptions {
   verbose: boolean;
+  json: boolean;
+}
+
+interface CheckResult {
+  name: string;
+  status: 'pass' | 'fail' | 'warn';
+  message: string;
 }
 
 async function runCheckEnv(options: CheckEnvOptions): Promise<void> {
   const spinner = createSpinner('Checking environment...').start();
 
-  const checks: { name: string; status: 'pass' | 'fail' | 'warn'; message: string }[] = [];
+  const checks: CheckResult[] = [];
 
   try {
     const nodeVersion = execSync('node --version', { encoding: 'utf-8' }).trim();
@@ -98,6 +106,22 @@ async function runCheckEnv(options: CheckEnvOptions): Promise<void> {
   });
 
   spinner.stop();
+
+  if (options.json) {
+    const result = {
+      checks: checks.reduce((acc, check) => {
+        acc[check.name] = { status: check.status, message: check.message };
+        return acc;
+      }, {} as Record<string, { status: string; message: string }>),
+      summary: {
+        pass: checks.filter(c => c.status === 'pass').length,
+        warn: checks.filter(c => c.status === 'warn').length,
+        fail: checks.filter(c => c.status === 'fail').length,
+      },
+    };
+    console.log(JSON.stringify(result, null, 2));
+    return;
+  }
 
   logger.break();
   logger.log(pc.cyan('Environment Check:'));

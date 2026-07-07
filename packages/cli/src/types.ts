@@ -16,16 +16,22 @@ export interface McpKitConfig {
 export interface InitOptions {
   name: string;
   description?: string;
-  template: 'typescript';
+  template: 'basic' | 'http' | 'auth' | 'full';
   packageManager: 'bun' | 'npm' | 'pnpm';
+  yes: boolean;
 }
 
 export interface DevOptions {
-  port?: number;
+  entry: string;
   verbose: boolean;
+  transport: 'stdio' | 'http';
+  port: number;
+  inspect: boolean;
+  test: boolean;
 }
 
 export interface ValidateOptions {
+  file: string;
   verbose: boolean;
 }
 
@@ -49,6 +55,7 @@ export interface DocsOptions {
 
 export interface CheckEnvOptions {
   verbose: boolean;
+  json: boolean;
 }
 
 export interface ShipOptions {
@@ -57,13 +64,12 @@ export interface ShipOptions {
   verbose: boolean;
 }
 
-export interface TemplateFile {
-  path: string;
-  content: string;
+export interface DoctorOptions {
+  json: boolean;
+  verbose: boolean;
 }
 
-export interface TemplateConfig {
-  name: string;
-  description: string;
-  files: TemplateFile[];
+export interface CompletionsOptions {
+  install: boolean;
+  print: boolean;
 }

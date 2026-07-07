@@ -7,6 +7,8 @@ import { registerTestCommand } from './test.js';
 import { registerDocsCommand } from './docs.js';
 import { registerCheckEnvCommand } from './check-env.js';
 import { registerShipCommand } from './ship.js';
+import { registerDoctorCommand } from './doctor.js';
+import { registerCompletionsCommand } from './completions.js';
 
 export function registerAllCommands(program: Command): void {
   registerInitCommand(program);
@@ -17,6 +19,8 @@ export function registerAllCommands(program: Command): void {
   registerDocsCommand(program);
   registerCheckEnvCommand(program);
   registerShipCommand(program);
+  registerDoctorCommand(program);
+  registerCompletionsCommand(program);
 }
 
 export {
@@ -28,4 +32,6 @@ export {
   registerDocsCommand,
   registerCheckEnvCommand,
   registerShipCommand,
+  registerDoctorCommand,
+  registerCompletionsCommand,
 };

@@ -2,8 +2,8 @@
 
 ## Current Status
 - **Phase:** CLI Implementation
-- **Last Updated:** 2025-01-11
-- **Current Task:** v1.0 Complete - Ready for landing page and docs
+- **Last Updated:** 2025-07-07
+- **Current Task:** v1.1 Complete - Templates, doctor, completions, dev enhancements
 
 ## Completed
 
@@ -29,28 +29,39 @@
 - [x] src/types.ts
 - [x] src/errors.ts
 
-### Phase 4: Commands
-- [x] src/commands/init.ts — Interactive setup wizard
-- [x] src/commands/dev.ts — Development server with tsx watch
+### Phase 4: Core Commands
+- [x] src/commands/init.ts — Interactive setup wizard with template registry
+- [x] src/commands/dev.ts — Development server with hot reload, transport options, inspector, test watcher
 - [x] src/commands/validate.ts — MCP schema validation
 - [x] src/commands/build.ts — Production build pipeline
 - [x] src/commands/test.ts — Test runner (vitest)
 - [x] src/commands/docs.ts — Documentation generator
-- [x] src/commands/check-env.ts — Environment check
+- [x] src/commands/check-env.ts — Environment check with JSON output
 - [x] src/commands/ship.ts — Publish to npm
+- [x] src/commands/doctor.ts — Project health diagnostics
+- [x] src/commands/completions.ts — Shell completions (bash/zsh/fish)
 - [x] src/commands/index.ts — Barrel export
 
-### Phase 5: Tests
+### Phase 5: Template System
+- [x] src/templates/types.ts — Template interfaces and types
+- [x] src/templates/index.ts — Template registry and utilities
+- [x] src/templates/registry/basic/index.ts — Basic MCP server template
+- [x] src/templates/registry/http/index.ts — HTTP transport template
+- [x] src/templates/registry/auth/index.ts — Authentication template
+- [x] src/templates/registry/full/index.ts — Full-featured template
+
+### Phase 6: Tests
 - [x] vitest.config.ts
 - [x] tests/commands/cli.test.ts — CLI help/version tests
 - [x] tests/commands/check-env.test.ts — Environment check tests
+- [x] tests/commands/new-features.test.ts — Doctor, completions, template tests
 
 ## In Progress
-- [ ] None - v1.0 CLI complete
+- [ ] None - v1.1 CLI complete
 
 ## Remaining
-- [ ] Phase 6: Documentation site (Fumadocs)
-- [ ] Phase 7: Landing page (Next.js)
+- [ ] Phase 7: Documentation site (Fumadocs)
+- [ ] Phase 8: Landing page (Next.js)
 
 ## Project Structure
 ```
@@ -82,7 +93,17 @@ mcpkit/
 │       │   │   ├── test.ts
 │       │   │   ├── docs.ts
 │       │   │   ├── check-env.ts
-│       │   │   └── ship.ts
+│       │   │   ├── ship.ts
+│       │   │   ├── doctor.ts
+│       │   │   └── completions.ts
+│       │   ├── templates/
+│       │   │   ├── types.ts
+│       │   │   ├── index.ts
+│       │   │   └── registry/
+│       │   │       ├── basic/index.ts
+│       │   │       ├── http/index.ts
+│       │   │       ├── auth/index.ts
+│       │   │       └── full/index.ts
 │       │   └── utils/
 │       │       ├── logger.ts
 │       │       ├── spinner.ts
@@ -91,7 +112,8 @@ mcpkit/
 │       └── tests/
 │           └── commands/
 │               ├── cli.test.ts
-│               └── check-env.test.ts
+│               ├── check-env.test.ts
+│               └── new-features.test.ts
 ```
 
 ## Key Decisions Log
@@ -104,6 +126,10 @@ mcpkit/
 | 2025-01-11 | Commander.js | Zero deps, fluent API, auto help |
 | 2025-01-11 | picocolors | 14x smaller than chalk, fast |
 | 2025-01-11 | @clack/prompts | Beautiful, used by Vite/Astro |
+| 2025-07-07 | Template system | Variations on same base, feature flags for differences |
+| 2025-07-07 | Inspector via link | Link to official MCP Inspector, not local implementation |
+| 2025-07-07 | Shell completions | Auto-detect shell, --print flag for stdout |
+| 2025-07-07 | Doctor command | Basic checks with extensible architecture for future |
 
 ## Dependencies Status
 ### CLI Package (@mcpkit/cli)
@@ -112,6 +138,7 @@ mcpkit/
 - ora: ^8.1.1
 - @clack/prompts: ^0.9.1
 - execa: ^9.5.2
+- open: ^11.0.0
 
 ### Dev Dependencies
 - @types/node: ^22.10.5
@@ -129,3 +156,5 @@ mcpkit/
 3. Add more templates (Python, etc.)
 4. Add Docker support
 5. Add CI/CD workflows
+6. Add more doctor checks (Docker, CI/CD, etc.)
+7. Add fish/zsh specific completions enhancements
