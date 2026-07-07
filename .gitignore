@@ -52,3 +52,5 @@ coverage/
 
 # customs
 testing/
+session.md
+session.json
