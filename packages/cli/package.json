@@ -1,0 +1,47 @@
+{
+  "name": "@mcpkit/cli",
+  "version": "0.1.0",
+  "description": "Build, validate, and ship production-ready MCP servers",
+  "type": "module",
+  "bin": {
+    "mcpkit": "./dist/bin/mcpkit.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "ora": "^8.1.1",
+    "@clack/prompts": "^0.9.1",
+    "execa": "^9.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3",
+    "tsup": "^8.3.6",
+    "tsx": "^4.19.2",
+    "vitest": "^3.0.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "cli",
+    "scaffolding",
+    "development-tools"
+  ],
+  "license": "MIT"
+}
