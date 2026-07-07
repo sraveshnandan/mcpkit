@@ -1,4 +1,4 @@
-# @mcpkit/cli
+# mcpkit-cli
 
 CLI tool for building, validating, and shipping production-ready MCP servers.
 
@@ -6,10 +6,10 @@ CLI tool for building, validating, and shipping production-ready MCP servers.
 
 ```bash
 # Install globally
-bun install -g @mcpkit/cli
+npm install -g mcpkit-cli
 
 # Or use npx
-npx @mcpkit/cli
+npx mcpkit-cli
 ```
 
 ## Commands

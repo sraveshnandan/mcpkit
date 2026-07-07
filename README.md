@@ -1,7 +1,7 @@
 # mcpkit
 
-[![npm version](https://img.shields.io/npm/v/@mcpkit/cli.svg)](https://www.npmjs.com/package/@mcpkit/cli)
-[![license](https://img.shields.io/npm/l/@mcpkit/cli)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/mcpkit-cli.svg)](https://www.npmjs.com/package/mcpkit-cli)
+[![license](https://img.shields.io/npm/l/mcpkit-cli)](./LICENSE)
 [![build](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/sraveshnandan/mcpkit)
 
 > **The create-next-app for MCP servers.** Scaffold, develop, validate, and ship production-ready Model Context Protocol servers in seconds.
@@ -12,7 +12,7 @@
 
 ```bash
 # Install mcpkit globally
-bun install -g @mcpkit/cli
+npm install -g mcpkit-cli
 
 # Create a new MCP server
 mcpkit init my-server
