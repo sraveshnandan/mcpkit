@@ -1,5 +1,5 @@
 {
-  "name": "@mcpkit/cli",
+  "name": "mcpkit-cli",
   "version": "0.1.0",
   "description": "The create-next-app for MCP servers. Scaffold, develop, validate, and ship production-ready Model Context Protocol servers in seconds.",
   "type": "module",
@@ -60,10 +60,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mcpkit/mcpkit.git"
+    "url": "https://github.com/sraveshnandan/mcpkit.git",
+    "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/mcpkit/mcpkit/issues"
+    "url": "https://github.com/sraveshnandan/mcpkit/issues"
   },
   "homepage": "https://mcpkit.dev",
   "license": "MIT"
