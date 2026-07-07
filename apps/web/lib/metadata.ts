@@ -13,6 +13,10 @@ export const defaultMetadata: Metadata = {
   },
   description: siteDescription,
   applicationName: siteName,
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
   alternates: {
     canonical: '/',
   },

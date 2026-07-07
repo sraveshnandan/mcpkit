@@ -77,15 +77,15 @@ export default function HomePage() {
       <SiteHeader />
       <main>
         <section className="border-b border-[var(--line)]">
-          <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-16">
-            <div className="grid gap-10 rounded-[2.25rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--signal)_6%,var(--bg-elevated)),var(--bg))] px-5 py-8 shadow-[0_26px_90px_rgba(69,38,137,0.10)] sm:px-7 sm:py-10 lg:grid-cols-[0.88fr_1.12fr] lg:px-8 lg:py-9">
-              <div className="space-y-8">
+          <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 md:py-12 lg:px-8 lg:py-14">
+            <div className="grid gap-12 rounded-[2.3rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--signal)_6%,var(--bg-elevated)),var(--bg))] px-5 py-7 shadow-[0_26px_90px_rgba(69,38,137,0.10)] sm:px-7 sm:py-9 lg:grid-cols-[minmax(0,0.76fr)_minmax(0,1.24fr)] lg:px-8 lg:py-8 xl:gap-14">
+              <div className="space-y-8 lg:py-4">
                 <SectionLabel>MCP development pipeline</SectionLabel>
                 <div className="space-y-5">
-                  <h1 className="max-w-3xl font-display text-5xl leading-[0.94] tracking-[-0.055em] text-[var(--ink)] sm:text-6xl lg:text-[4.6rem]">
+                  <h1 className="max-w-[11ch] font-display text-5xl leading-[0.94] tracking-[-0.055em] text-[var(--ink)] sm:text-6xl lg:text-[4.05rem] xl:text-[4.5rem]">
                     Build production-ready MCP servers without rebuilding the workflow around them.
                   </h1>
-                  <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
+                  <p className="max-w-xl text-lg leading-8 text-[var(--muted)]">
                     {site.tagline} `mcpkit` connects scaffolding, development, testing, validation,
                     diagnostics, documentation, builds, and publishing into one coherent path.
                   </p>
@@ -101,7 +101,7 @@ export default function HomePage() {
                     <GitBranch className="size-4" />
                   </ButtonLink>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-1">
                   {['4 templates', '10 CLI commands', 'bun · npm · pnpm'].map((item) => (
                     <span
                       key={item}

@@ -1,5 +1,5 @@
 ## Dependencies Status
-### CLI Package (@mcpkit/cli)
+### CLI Package (mcpkit-cli)
 - commander: ^12.1.0
 - picocolors: ^1.1.1
 - ora: ^8.1.1
@@ -18,7 +18,7 @@
 - None
 
 ## Active Task
-- Public web polish pass completed in `apps/web`; updated landing and docs UX awaiting review.
+- Public web refinement pass completed in `apps/web`; updated hero composition and temporary branding are ready for review.
 
 ## Completed
 - Created a unified Next.js public app in `apps/web`
@@ -32,6 +32,8 @@
 - Fixed CLI help/version tests to use `bunx tsx` so they pass reliably in the Bun workspace
 - Refreshed the public site with a violet-first visual system, a more polished interactive hero, an accordion FAQ experience, and an upgraded docs Quick Start guide
 - Fixed the shared Quick Start route to point to the working `/docs/quick-start` page
+- Reduced hero congestion by simplifying the command-demo composition and switching the header to a floating container style
+- Added subtle reduced-motion-safe entrance/hover motion and switched temporary branding to an `M` text mark with matching favicon
 
 ## In Progress
 - None
@@ -45,6 +47,6 @@
 - `apps/web` is the canonical location for future landing-page and docs work
 
 ## Next Exact Task
-1. Review the updated public site in a browser on mobile and desktop
-2. Approve or request another focused polish pass
-3. If approved, optionally align the README with the verified public site language
+1. Review the updated hero, floating header, and temporary `M` branding in a browser on desktop and mobile
+2. Approve or request one more focused visual pass
+3. If approved, continue with remaining README alignment or broader final QA

@@ -6,15 +6,15 @@ import { marketingLinks } from '@/lib/site';
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[color:color-mix(in_srgb,var(--bg)_88%,transparent)] backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 rounded-[1.4rem] border border-[color:color-mix(in_srgb,var(--line)_82%,transparent)] bg-[color:color-mix(in_srgb,var(--bg)_84%,transparent)] px-4 py-3 shadow-[0_18px_40px_rgba(13,10,21,0.10)] backdrop-blur-xl sm:px-5">
         <Brand />
         <nav aria-label="Primary" className="hidden items-center gap-5 md:flex">
           {marketingLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+              className="text-sm font-medium text-[var(--muted)] transition-colors duration-200 hover:text-[var(--ink)]"
               {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
             >
               {link.label}
