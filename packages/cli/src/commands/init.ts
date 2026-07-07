@@ -48,7 +48,7 @@ async function runInit(name: string | undefined, options: InitOptions): Promise<
   let description: string;
   let template: TemplateName;
   let packageManager: string;
-  let installDeps: boolean;
+  let installDeps: boolean | symbol;
 
   if (options.yes) {
     // Non-interactive mode: use defaults
@@ -210,7 +210,7 @@ async function scaffoldProject(
   for (const file of files) {
     const filePath = path.join(projectDir, file.path);
     const dir = path.dirname(filePath);
-    
+
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
