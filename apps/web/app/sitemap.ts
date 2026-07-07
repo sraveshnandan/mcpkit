@@ -3,6 +3,8 @@ import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/lib/metadata';
 import { source } from '@/lib/source';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = source.getPages().map((page) => ({
     url: `${siteUrl}${page.url}`,

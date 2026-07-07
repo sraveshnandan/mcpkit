@@ -3,7 +3,6 @@
 import { CheckCircle2, CircleDashed, Sparkles } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
-import { PipelineRail } from '@/components/ui/pipeline-rail';
 import { TerminalWindow } from '@/components/ui/terminal-window';
 import { cn } from '@/lib/utils';
 
@@ -50,7 +49,6 @@ const stages = [
   },
 ] as const;
 
-const workflow = ['init', 'dev', 'test', 'validate', 'doctor', 'build', 'ship'] as const;
 const fallbackStage = stages[stages.length - 1]!;
 
 export function HeroDemo() {
@@ -181,17 +179,7 @@ export function HeroDemo() {
         </div>
       </TerminalWindow>
 
-      <div className="rounded-[1.7rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--signal)_8%,var(--panel-strong)),var(--panel-strong))] p-5 shadow-[0_20px_70px_rgba(69,38,137,0.08)]">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
-            follow-up workflow
-          </div>
-          <span className="rounded-full border border-[var(--line)] bg-[var(--bg-elevated)] px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
-            one coherent command language
-          </span>
-        </div>
-        <PipelineRail items={[...workflow]} className="border-0 bg-transparent p-0" />
-      </div>
+
     </div>
   );
 }

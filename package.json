@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "bun --filter '*' dev",
     "build": "bun run --sequential --workspaces build",
+    "build:pages": "bun run --filter @mcpkit/web build:pages",
     "test": "bun run --parallel --workspaces test",
     "lint": "bun run --workspaces --if-present lint",
     "typecheck": "bun run --workspaces --if-present typecheck",

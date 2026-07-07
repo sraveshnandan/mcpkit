@@ -82,12 +82,11 @@ export default function HomePage() {
               <div className="space-y-8 lg:py-4">
                 <SectionLabel>MCP development pipeline</SectionLabel>
                 <div className="space-y-5">
-                  <h1 className="max-w-[11ch] font-display text-5xl leading-[0.94] tracking-[-0.055em] text-[var(--ink)] sm:text-6xl lg:text-[4.05rem] xl:text-[4.5rem]">
-                    Build production-ready MCP servers without rebuilding the workflow around them.
+                  <h1 className="max-w-[8.8ch] font-display text-5xl leading-[0.94] tracking-[-0.055em] text-[var(--ink)] sm:text-6xl lg:text-[3.85rem] xl:text-[4.2rem]">
+                    Build MCP servers with the workflow already wired in.
                   </h1>
-                  <p className="max-w-xl text-lg leading-8 text-[var(--muted)]">
-                    {site.tagline} `mcpkit` connects scaffolding, development, testing, validation,
-                    diagnostics, documentation, builds, and publishing into one coherent path.
+                  <p className="max-w-lg text-lg leading-8 text-[var(--muted)]">
+                    {site.tagline} Scaffold, develop, test, validate, diagnose, document, build, and ship from one toolkit instead of assembling the workflow yourself.
                   </p>
                 </div>
                 <CommandBlock label="install" command={installCommand} />
@@ -111,7 +110,6 @@ export default function HomePage() {
                     </span>
                   ))}
                 </div>
-                <PipelineRail items={workflow} />
               </div>
               <HeroDemo />
             </div>

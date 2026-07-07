@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "bun run scripts/generate-search-index.ts && next dev",
+    "build": "bun run scripts/generate-search-index.ts && next build",
+    "build:pages": "bun run scripts/generate-search-index.ts && GITHUB_PAGES=true next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

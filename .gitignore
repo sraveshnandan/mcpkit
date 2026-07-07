@@ -57,3 +57,4 @@ session.json
 
 # Next.js
 .next/
+apps/web/public/search-index.json

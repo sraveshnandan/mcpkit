@@ -4,10 +4,13 @@ import {
   Command,
   GitBranch,
   Package,
+  Star,
   Terminal,
 } from 'lucide-react';
 
 import type { ComponentType } from 'react';
+
+import { repoName, repoOwner } from '@/lib/runtime-config';
 
 export interface MarketingLink {
   label: string;
@@ -26,7 +29,8 @@ export const site = {
   tagline: 'The create-next-app for MCP servers.',
   description:
     'Build, validate, test, diagnose, document, and ship Model Context Protocol servers with one coherent toolkit.',
-  githubUrl: 'https://github.com/sraveshnandan/mcpkit',
+  githubUrl: `https://github.com/${repoOwner}/${repoName}`,
+  githubStarUrl: `https://github.com/${repoOwner}/${repoName}`,
   npmUrl: 'https://www.npmjs.com/package/mcpkit-cli',
   docsUrl: '/docs',
   quickStartUrl: '/docs/quick-start',
@@ -46,6 +50,7 @@ export const quickActions: QuickAction[] = [
   { label: 'Documentation', href: '/docs', icon: BookOpenText },
   { label: 'Install package', href: site.npmUrl, icon: Package },
   { label: 'GitHub', href: site.githubUrl, icon: GitBranch },
+  { label: 'Give it a star', href: site.githubStarUrl, icon: Star },
 ];
 
 export const installCommand = `npm install -g ${site.packageName}`;

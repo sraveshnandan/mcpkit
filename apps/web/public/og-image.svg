@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="mcpkit">
+  <rect width="1200" height="630" rx="40" fill="#0d0a15"/>
+  <rect x="24" y="24" width="1152" height="582" rx="32" fill="url(#panel)" stroke="#4c3775"/>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#171224"/>
+      <stop offset="100%" stop-color="#120f1d"/>
+    </linearGradient>
+  </defs>
+  <rect x="72" y="72" width="92" height="92" rx="24" fill="#201735" stroke="#6d28d9" stroke-opacity="0.5"/>
+  <text x="118" y="133" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700" fill="#c4b5fd">M</text>
+  <text x="196" y="124" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="8" fill="#b8accf">MCP TOOLKIT</text>
+  <text x="72" y="260" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700" fill="#f5f1ff">Build MCP servers with</text>
+  <text x="72" y="338" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="700" fill="#f5f1ff">the workflow already wired in.</text>
+  <text x="72" y="414" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#b7afc9">Create, develop, test, validate, diagnose, document, build, and ship from one toolkit.</text>
+  <g transform="translate(790 132)">
+    <rect width="320" height="62" rx="20" fill="#1f1730" stroke="#5e46a0"/>
+    <text x="32" y="39" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#f5f1ff">mcpkit init</text>
+    <text x="258" y="39" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#a78bfa">→</text>
+    <rect y="82" width="320" height="62" rx="20" fill="#1f1730" stroke="#5e46a0"/>
+    <text x="32" y="121" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#f5f1ff">mcpkit dev</text>
+    <text x="258" y="121" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#a78bfa">→</text>
+    <rect y="164" width="320" height="62" rx="20" fill="#1f1730" stroke="#5e46a0"/>
+    <text x="32" y="203" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#f5f1ff">mcpkit test</text>
+    <text x="258" y="203" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#a78bfa">→</text>
+    <rect y="246" width="320" height="62" rx="20" fill="#1f1730" stroke="#5e46a0"/>
+    <text x="32" y="285" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#f5f1ff">mcpkit ship</text>
+    <text x="258" y="285" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#a78bfa">→</text>
+  </g>
+</svg>

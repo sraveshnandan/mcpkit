@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { Star } from 'lucide-react';
 
 import { Brand } from '@/components/brand';
+import { ButtonLink } from '@/components/ui/button-link';
 import { quickActions, site } from '@/lib/site';
 
 export function SiteFooter() {
@@ -13,6 +15,10 @@ export function SiteFooter() {
             {site.description} The website and docs are written from the repository as it exists today,
             not from future roadmap assumptions.
           </p>
+          <ButtonLink href={site.githubStarUrl} variant="secondary" external>
+            Give this repo a star
+            <Star className="size-4" />
+          </ButtonLink>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           {quickActions.map((link) => (
