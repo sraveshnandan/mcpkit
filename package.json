@@ -1,0 +1,18 @@
+{
+  "name": "mcpkit",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter '*' dev",
+    "build": "bun run --sequential --workspaces build",
+    "test": "bun run --parallel --workspaces test",
+    "lint": "bun run --workspaces --if-present lint",
+    "typecheck": "bun run --workspaces --if-present typecheck",
+    "clean": "bun run --workspaces --if-present clean"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
