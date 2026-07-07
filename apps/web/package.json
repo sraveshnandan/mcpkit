@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "bun run scripts/generate-search-index.ts && next dev",
-    "build": "bun run scripts/generate-search-index.ts && next build",
-    "build:pages": "bun run scripts/generate-search-index.ts && GITHUB_PAGES=true next build",
+    "build": "bun run scripts/generate-search-index.ts && next build && bun run scripts/cname.js",
+    "build:pages": "bun run scripts/generate-search-index.ts && GITHUB_PAGES=true NEXT_PUBLIC_SITE_URL='https://sraveshnandan.github.io/mcpkit' next build && bun run scripts/cname.js",
+    "build:custom": "export GITHUB_PAGES=true CUSTOM_DOMAIN=true NEXT_PUBLIC_SITE_URL='https://mcpkit.js.org' && bun run scripts/generate-search-index.ts && next build && bun run scripts/cname.js",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

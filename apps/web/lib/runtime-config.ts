@@ -2,8 +2,10 @@ export const repoOwner = 'sraveshnandan';
 export const repoName = 'mcpkit';
 
 export const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+export const isCustomDomain = process.env.CUSTOM_DOMAIN === 'true';
 
-const defaultBasePath = isGitHubPages ? `/${repoName}` : '';
+// With a custom domain no basePath is needed — the site lives at the root.
+const defaultBasePath = isGitHubPages && !isCustomDomain ? `/${repoName}` : '';
 
 export const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? defaultBasePath).replace(/\/$/, '');
 
