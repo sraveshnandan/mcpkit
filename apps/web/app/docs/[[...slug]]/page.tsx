@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import defaultMdxComponents from 'fumadocs-ui/mdx';
 import {
   DocsBody,
   DocsDescription,
@@ -8,6 +7,7 @@ import {
   DocsTitle,
 } from 'fumadocs-ui/layouts/docs/page';
 
+import { getMDXComponents } from '@/mdx-components';
 import { source } from '@/lib/source';
 import { siteDescription } from '@/lib/metadata';
 
@@ -26,7 +26,7 @@ export default async function DocsCatchAllPage(props: {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={defaultMdxComponents} />
+        <MDX components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
   );

@@ -23,7 +23,7 @@ export function ButtonLink({
 
   const styles = {
     primary:
-      'border-[var(--signal)] bg-[var(--signal)] text-[var(--bg)] shadow-[0_10px_30px_rgba(255,179,0,0.18)] hover:bg-[var(--signal-strong)]',
+      'border-[var(--signal)] bg-[var(--signal)] text-white shadow-[0_10px_30px_rgba(91,49,196,0.22)] hover:bg-[var(--signal-strong)]',
     secondary:
       'border-[var(--line-strong)] bg-[var(--panel)] text-[var(--ink)] hover:border-[var(--signal)] hover:bg-[var(--panel-strong)]',
     ghost: 'border-transparent bg-transparent text-[var(--muted)] hover:text-[var(--ink)]',

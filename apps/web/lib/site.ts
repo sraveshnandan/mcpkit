@@ -29,7 +29,7 @@ export const site = {
   githubUrl: 'https://github.com/sraveshnandan/mcpkit',
   npmUrl: 'https://www.npmjs.com/package/mcpkit-cli',
   docsUrl: '/docs',
-  quickStartUrl: '/docs/getting-started/quick-start',
+  quickStartUrl: '/docs/quick-start',
 };
 
 export const marketingLinks: MarketingLink[] = [

@@ -3,26 +3,61 @@ title: FAQ
 description: Common adoption questions answered from the current repository state.
 ---
 
-## Is mcpkit only for local MCP servers?
+## Product and workflow
 
-No. The `http`, `auth`, and `full` templates generate HTTP-based servers using Streamable HTTP.
+### What is mcpkit?
 
-## Which client config files are generated automatically?
+`mcpkit` is a CLI toolkit for scaffolding and working with TypeScript MCP servers. In the current repository it covers project creation, development helpers, testing, validation, diagnostics, lightweight docs generation, builds, publishing, and shell completions.
+
+### Do I need to understand MCP before using it?
+
+Not deeply. The `basic` template gets you to a running server quickly, and the docs explain MCP concepts in the amount needed to use the toolkit effectively.
+
+### Can I keep using the generated project without the CLI later?
+
+Yes. The generated output is a normal Node and TypeScript project with package scripts. After scaffolding, you can work directly inside that generated project.
+
+## Templates and transports
+
+### Which template should I choose?
+
+- use `basic` for the smallest stdio-first setup
+- use `http` for a Streamable HTTP endpoint
+- use `auth` for bearer-token protection on `/mcp`
+- use `full` when you also want logging, metrics, health checks, linting, and formatting config
+
+For a fuller comparison, see [Choosing a template](/docs/templates/choosing-a-template).
+
+### Is mcpkit only for local MCP servers?
+
+No. The `http`, `auth`, and `full` templates generate HTTP-based servers using Streamable HTTP. The `basic` template is the smallest local-first option.
+
+### Which client config files are generated automatically?
 
 Only `.vscode/mcp.json` is generated automatically by the templates today.
 
-## Does mcpkit support shell completions?
+### Are the auth templates a complete authentication solution?
+
+Not by themselves. The current `auth` and `full` templates include auth-oriented scaffolding, but they still need real JWKS-backed configuration for production-ready authentication behavior.
+
+## Commands and verification
+
+### Does mcpkit support shell completions?
 
 Yes. `bash`, `zsh`, and `fish` are supported by the `completions` command.
 
-## Does the docs command generate a full docs site?
+### Does the docs command generate a full docs site?
 
 No. The current `docs` command writes a single `api.md` file.
 
-## Does mcpkit do deep validation of my MCP server?
+### Does mcpkit do deep validation of my MCP server?
 
 Not yet. The current `validate` command uses heuristic string checks against a source file.
 
-## Can I publish with package managers other than npm?
+### What does `doctor` check?
+
+`doctor` inspects environment readiness, project structure, MCP SDK presence, tool definitions, and config-file discovery. It also supports `--json` output.
+
+### Can I publish with package managers other than npm?
 
 Yes. The `ship` command can detect `bun`, `pnpm`, `yarn`, or `npm` for publishing.

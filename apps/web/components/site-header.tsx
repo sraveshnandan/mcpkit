@@ -22,7 +22,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <ButtonLink href="/docs/getting-started/quick-start" variant="secondary" className="hidden sm:inline-flex">
+          <ButtonLink href="/docs/quick-start" variant="secondary" className="hidden sm:inline-flex">
             Quick Start
           </ButtonLink>
           <ButtonLink href="https://www.npmjs.com/package/mcpkit-cli" external>

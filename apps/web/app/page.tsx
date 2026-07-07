@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 
 import { CommandExplorer } from '@/components/command-explorer';
+import { FaqGrid } from '@/components/faq-grid';
 import { HeroDemo } from '@/components/hero-demo';
 import { ProjectStructureView } from '@/components/project-structure-view';
 import { SiteFooter } from '@/components/site-footer';
@@ -70,61 +71,50 @@ const experience = [
   },
 ] as const;
 
-const faqs = [
-  {
-    q: 'What is mcpkit?',
-    a: 'It is a CLI toolkit for scaffolding and working with TypeScript MCP servers. The current implementation covers project creation, local development helpers, testing, validation, diagnostics, docs generation, builds, shipping, and shell completions.',
-  },
-  {
-    q: 'Do I need to understand MCP before using it?',
-    a: 'Not deeply. The `basic` template gets you to a running MCP server quickly, and the docs explain MCP concepts only in the context needed to use mcpkit effectively.',
-  },
-  {
-    q: 'Which template should I choose?',
-    a: 'Choose `basic` for stdio and the smallest surface area, `http` for a Streamable HTTP endpoint, `auth` for bearer-token protection on `/mcp`, and `full` when you also want logging, metrics, health checks, and linting/formatting config.',
-  },
-  {
-    q: 'Can I use npm, pnpm, or Bun?',
-    a: 'Yes. `init` supports `bun`, `npm`, and `pnpm`. The quickest broadly compatible path on this site uses npm because it is present in most Node setups. The `ship` command can also detect Yarn from lockfiles, but the environment-check commands do not actively verify Yarn.',
-  },
-  {
-    q: 'Can I keep using the generated project without the CLI later?',
-    a: 'Yes. The generated output is an ordinary Node/TypeScript project with package scripts. After scaffolding, you can work inside the project directly with its generated scripts.',
-  },
-] as const;
-
 export default function HomePage() {
   return (
     <>
       <SiteHeader />
       <main>
         <section className="border-b border-[var(--line)]">
-          <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-24">
-            <div className="space-y-8">
-              <SectionLabel>MCP development pipeline</SectionLabel>
-              <div className="space-y-5">
-                <h1 className="max-w-3xl font-display text-5xl leading-none tracking-[-0.05em] text-[var(--ink)] sm:text-6xl lg:text-7xl">
-                  Build production-ready MCP servers without rebuilding the workflow around them.
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
-                  {site.tagline} `mcpkit` connects scaffolding, development, testing, validation,
-                  diagnostics, documentation, builds, and publishing into one coherent path.
-                </p>
+          <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-16">
+            <div className="grid gap-10 rounded-[2.25rem] border border-[var(--line-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--signal)_6%,var(--bg-elevated)),var(--bg))] px-5 py-8 shadow-[0_26px_90px_rgba(69,38,137,0.10)] sm:px-7 sm:py-10 lg:grid-cols-[0.88fr_1.12fr] lg:px-8 lg:py-9">
+              <div className="space-y-8">
+                <SectionLabel>MCP development pipeline</SectionLabel>
+                <div className="space-y-5">
+                  <h1 className="max-w-3xl font-display text-5xl leading-[0.94] tracking-[-0.055em] text-[var(--ink)] sm:text-6xl lg:text-[4.6rem]">
+                    Build production-ready MCP servers without rebuilding the workflow around them.
+                  </h1>
+                  <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
+                    {site.tagline} `mcpkit` connects scaffolding, development, testing, validation,
+                    diagnostics, documentation, builds, and publishing into one coherent path.
+                  </p>
+                </div>
+                <CommandBlock label="install" command={installCommand} />
+                <div className="flex flex-wrap items-center gap-3">
+                  <ButtonLink href={site.quickStartUrl}>
+                    Quick Start
+                    <ArrowRight className="size-4" />
+                  </ButtonLink>
+                  <ButtonLink href={site.githubUrl} variant="secondary" external>
+                    GitHub
+                    <GitBranch className="size-4" />
+                  </ButtonLink>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {['4 templates', '10 CLI commands', 'bun · npm · pnpm'].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-[var(--line)] bg-[var(--bg-elevated)] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-[var(--muted)]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <PipelineRail items={workflow} />
               </div>
-              <CommandBlock label="install" command={installCommand} />
-              <div className="flex flex-wrap items-center gap-3">
-                <ButtonLink href={site.quickStartUrl}>
-                  Quick Start
-                  <ArrowRight className="size-4" />
-                </ButtonLink>
-                <ButtonLink href={site.githubUrl} variant="secondary" external>
-                  GitHub
-                  <GitBranch className="size-4" />
-                </ButtonLink>
-              </div>
-              <PipelineRail items={workflow} />
+              <HeroDemo />
             </div>
-            <HeroDemo />
           </div>
         </section>
 
@@ -240,16 +230,31 @@ export default function HomePage() {
         </section>
 
         <section className="border-b border-[var(--line)]">
-          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
             <div className="space-y-4">
               <SectionLabel>Quick Start</SectionLabel>
               <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
                 The shortest reliable path to a working MCP server.
               </h2>
               <p className="text-base leading-8 text-[var(--muted)]">
-                This path uses the currently published package name and an explicit npm package-manager choice,
+                This path uses the current package name and an explicit npm package-manager choice,
                 so it remains usable even if you do not have Bun installed yet.
               </p>
+              <div className="rounded-[1.5rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
+                <div className="text-[0.72rem] font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+                  what happens
+                </div>
+                <ul className="mt-4 space-y-2 text-sm leading-7 text-(--muted)">
+                  <li>• installs the published CLI package</li>
+                  <li>• scaffolds the verified `basic` template</li>
+                  <li>• installs dependencies automatically in `--yes` mode</li>
+                  <li>• starts the generated server with `npm run dev`</li>
+                </ul>
+              </div>
+              <ButtonLink href={site.quickStartUrl} variant="secondary">
+                Open the full Quick Start guide
+                <ArrowRight className="size-4" />
+              </ButtonLink>
             </div>
             <div className="space-y-4">
               <CommandBlock label="install" command={installCommand} />
@@ -259,11 +264,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-b border-[var(--line)]">
+        <section className="border-b border-(--line)">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div className="space-y-4">
               <SectionLabel>Documentation bridge</SectionLabel>
-              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-(--ink)">
                 Learn, reference, and troubleshoot without leaving the product experience.
               </h2>
               <p className="text-base leading-8 text-[var(--muted)]">
@@ -335,14 +340,7 @@ export default function HomePage() {
                 Adoption questions answered from the current implementation.
               </h2>
             </div>
-            <div className="grid gap-4 lg:grid-cols-2">
-              {faqs.map((item) => (
-                <article key={item.q} className="rounded-[1.6rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
-                  <h3 className="text-lg font-semibold tracking-tight text-[var(--ink)]">{item.q}</h3>
-                  <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{item.a}</p>
-                </article>
-              ))}
-            </div>
+            <FaqGrid />
           </div>
         </section>
 

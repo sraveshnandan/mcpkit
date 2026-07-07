@@ -18,7 +18,7 @@
 - None
 
 ## Active Task
-- Public web experience completed in `apps/web`; final state recorded and awaiting review.
+- Public web polish pass completed in `apps/web`; updated landing and docs UX awaiting review.
 
 ## Completed
 - Created a unified Next.js public app in `apps/web`
@@ -30,6 +30,8 @@
 - Added search API, metadata, sitemap, robots, and Open Graph image generation
 - Updated workspace configuration so `apps/web` participates in monorepo typecheck/build flows
 - Fixed CLI help/version tests to use `bunx tsx` so they pass reliably in the Bun workspace
+- Refreshed the public site with a violet-first visual system, a more polished interactive hero, an accordion FAQ experience, and an upgraded docs Quick Start guide
+- Fixed the shared Quick Start route to point to the working `/docs/quick-start` page
 
 ## In Progress
 - None
@@ -43,6 +45,6 @@
 - `apps/web` is the canonical location for future landing-page and docs work
 
 ## Next Exact Task
-1. Review `apps/web` in a browser on mobile and desktop
-2. Approve or request final polish adjustments
-3. If approved, align remaining README copy with the verified site content
+1. Review the updated public site in a browser on mobile and desktop
+2. Approve or request another focused polish pass
+3. If approved, optionally align the README with the verified public site language

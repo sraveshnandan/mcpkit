@@ -3,37 +3,37 @@
 @import 'fumadocs-ui/css/preset.css';
 
 :root {
-  --bg: #f4f1e8;
-  --bg-elevated: #fbf8f2;
-  --panel: #efe9dc;
-  --panel-strong: #e7dfd1;
-  --ink: #11151a;
-  --muted: #5c6674;
-  --line: #d3cab9;
-  --line-strong: #b7ac9a;
-  --signal: #ffb300;
-  --signal-strong: #e89c00;
-  --transport: #0ea5e9;
+  --bg: #f5f1fc;
+  --bg-elevated: #fcfaff;
+  --panel: #eee7fb;
+  --panel-strong: #e7def8;
+  --ink: #12131a;
+  --muted: #5f6173;
+  --line: #d5cbea;
+  --line-strong: #baafd8;
+  --signal: #7c3aed;
+  --signal-strong: #6d28d9;
+  --transport: #a855f7;
   --danger: #cf5537;
-  --terminal: #101318;
-  --terminal-ink: #f6f3ed;
+  --terminal: #0e0a17;
+  --terminal-ink: #f5f1ff;
 }
 
 .dark {
-  --bg: #0d1015;
-  --bg-elevated: #131821;
-  --panel: #151b24;
-  --panel-strong: #1b222c;
-  --ink: #eef1f6;
-  --muted: #94a1b4;
-  --line: #273140;
-  --line-strong: #354153;
-  --signal: #ffb300;
-  --signal-strong: #ffc247;
-  --transport: #42c6ff;
+  --bg: #0d0a15;
+  --bg-elevated: #141021;
+  --panel: #171224;
+  --panel-strong: #1d1730;
+  --ink: #f3efff;
+  --muted: #aaa0c1;
+  --line: #2f2546;
+  --line-strong: #42335f;
+  --signal: #9f67ff;
+  --signal-strong: #b287ff;
+  --transport: #cb9bff;
   --danger: #f07a5c;
-  --terminal: #090c11;
-  --terminal-ink: #edf2f7;
+  --terminal: #090612;
+  --terminal-ink: #f2ecff;
 }
 
 @theme inline {
@@ -49,8 +49,9 @@ html {
 body {
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(255, 179, 0, 0.06), transparent 22%),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.045), transparent 18%),
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.1), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(168, 85, 247, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(109, 40, 217, 0.04), transparent 24%),
     var(--bg);
 }
 
@@ -68,7 +69,7 @@ body::before {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--signal) 30%, transparent);
+  background: color-mix(in srgb, var(--signal) 24%, transparent);
 }
 
 h1,

@@ -3,43 +3,22 @@ title: Quick Start
 description: Create and run a verified mcpkit project in under two minutes.
 ---
 
-This is the shortest broadly compatible path based on the current implementation.
+This page is the fastest verified path from install to a running server.
 
-## 1. Install the CLI
+<DocsQuickStart />
 
-```bash
-npm install -g mcpkit-cli
-```
+## Why this path is the default recommendation
 
-## 2. Create a project
+The commands above are intentionally narrow:
 
-```bash
-mcpkit init hello-mcp --template basic --package-manager npm --yes
-```
+- they use the current published package name: `mcpkit-cli`
+- they choose `npm` explicitly instead of assuming Bun is already installed
+- they use the `basic` template because it has the fewest moving parts
+- they avoid documenting any behavior that is not present in the repository today
 
-Verified behavior of this command:
+## What gets generated
 
-- uses the `basic` template
-- sets the description to `A hello-mcp MCP server`
-- installs dependencies automatically
-- generates `.vscode/mcp.json`
-
-## 3. Start the generated server
-
-```bash
-cd hello-mcp
-npm run dev
-```
-
-The generated `basic` template runs:
-
-```bash
-tsx watch src/index.ts
-```
-
-## 4. What you get
-
-The generated project includes:
+For this quick start, `mcpkit init hello-mcp --template basic --package-manager npm --yes` generates a small stdio-first project that includes:
 
 - `src/index.ts`
 - `package.json`
@@ -48,10 +27,21 @@ The generated project includes:
 - `LICENSE`
 - `.vscode/mcp.json`
 
-The generated server creates an `McpServer`, registers a `greet` tool, connects via `StdioServerTransport`, and logs a startup message to stderr.
+The generated server creates an `McpServer`, registers a `greet` tool, connects through `StdioServerTransport`, and writes startup logging to stderr.
 
-## 5. Next steps
+## When to choose a different template
+
+The quick start uses `basic` because it is the shortest path, not because it is the only useful template.
+
+- choose `http` when you need a Streamable HTTP endpoint
+- choose `auth` when you want bearer-token protection on `/mcp`
+- choose `full` when you also want logging, health checks, metrics, linting, and formatting config
+
+For a full breakdown, continue to [Choosing a template](/docs/templates/choosing-a-template).
+
+## Next steps
 
 - [Create your first MCP server](/docs/getting-started/first-server)
 - [Run it](/docs/getting-started/run-it)
+- [Test it](/docs/getting-started/test-it)
 - [Understand the generated project](/docs/getting-started/understand-generated-project)
