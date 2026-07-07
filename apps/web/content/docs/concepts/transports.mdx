@@ -1,0 +1,36 @@
+---
+title: Transports
+description: Choose between stdio and Streamable HTTP based on the current template implementations.
+---
+
+Transport choice is the most important template decision in the current toolkit.
+
+## `basic`: stdio
+
+The `basic` template uses:
+
+```ts
+new StdioServerTransport()
+```
+
+Choose it when you want the smallest starting point and a local-process integration style.
+
+## `http`, `auth`, and `full`: Streamable HTTP
+
+These templates use:
+
+```ts
+new StreamableHTTPServerTransport({
+  sessionIdGenerator: undefined,
+})
+```
+
+and expose `/mcp` over Express on port `3100` by default.
+
+## Important precision
+
+The repository README uses broader transport language in places. For this documentation, the verified implementation is what matters:
+
+- the generated transport is **Streamable HTTP**
+- the generated code listens on `process.env.PORT || 3100`
+- the generated route returns a helpful JSON response for `GET /mcp`

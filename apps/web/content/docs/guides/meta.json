@@ -1,0 +1,15 @@
+{
+  "title": "Guides",
+  "pages": [
+    "index",
+    "development-workflow",
+    "testing-mcp-servers",
+    "validation",
+    "mcp-inspector",
+    "environment-configuration",
+    "building-for-production",
+    "publishing",
+    "diagnostics",
+    "shell-completions"
+  ]
+}

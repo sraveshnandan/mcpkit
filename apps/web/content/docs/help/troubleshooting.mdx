@@ -1,0 +1,36 @@
+---
+title: Troubleshooting
+description: Solve common mcpkit issues using the current command behavior and generated project structure.
+---
+
+## `init` fails in CI or a non-interactive shell
+
+If you are not in a TTY, use:
+
+```bash
+mcpkit init my-server --template basic --yes
+```
+
+Interactive mode requires a TTY.
+
+## `init --yes` says a value is missing
+
+In non-interactive mode, both the project name and `--template` are required.
+
+## `mcpkit dev --port` does not change my generated HTTP template port
+
+The generated HTTP templates read `PORT`, while `mcpkit dev` sets `MCPKIT_PORT`.
+
+Use the project script or set `PORT` explicitly.
+
+## `doctor` mentions `mcpkit config generate`
+
+That suggestion string exists in the current implementation, but the command does not. Use the actual checks and fix the missing config files manually for now.
+
+## `lint` fails in a generated basic/http/auth project
+
+Those templates include a `lint` script but do not currently add ESLint as a dependency. Either add ESLint yourself or remove the script if it is not needed.
+
+## Auth template requests always fail
+
+Make sure `AUTH_JWKS_URI` is configured. The generated auth flow depends on it for key initialization.

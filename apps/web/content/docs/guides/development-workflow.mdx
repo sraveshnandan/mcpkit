@@ -1,0 +1,24 @@
+---
+title: Development workflow
+description: Move through the current mcpkit workflow from scaffold to release.
+---
+
+The most useful mental model is:
+
+```text
+init → dev → test → validate → doctor → build → ship
+```
+
+## Recommended flow
+
+1. create the project with `init`
+2. run the generated project script or `mcpkit dev`
+3. use package scripts or `mcpkit test`
+4. run `mcpkit validate` for quick entry-file heuristics
+5. run `mcpkit doctor` when structure or environment feels off
+6. run `mcpkit build`
+7. use `mcpkit ship` when you are ready to publish
+
+## Why the docs emphasize this sequence
+
+The product story is strongest when these commands are treated as one system instead of disconnected commands.

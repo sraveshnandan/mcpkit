@@ -1,0 +1,32 @@
+---
+title: Shell completions
+description: Generate and install bash, zsh, and fish completions from the current CLI implementation.
+---
+
+## Print a script
+
+```bash
+mcpkit completions bash --print
+```
+
+## Install automatically
+
+```bash
+mcpkit completions zsh --install
+```
+
+## Supported shells
+
+- `bash`
+- `zsh`
+- `fish`
+
+## Install locations
+
+- bash: `~/.local/share/bash-completion/completions/mcpkit`
+- zsh: `~/.zsh/completions/_mcpkit`
+- fish: `~/.config/fish/completions/mcpkit.fish`
+
+## Caveat
+
+The completion scripts are generated from separate logic and may drift from command definitions in small ways. Treat the CLI help output as the final source of truth when a completion hint disagrees.

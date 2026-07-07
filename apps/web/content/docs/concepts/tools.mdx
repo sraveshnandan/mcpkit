@@ -1,0 +1,24 @@
+---
+title: Tools
+description: See how tool registration appears in the generated templates and in mcpkit's validation heuristics.
+---
+
+Tools are the clearest concept to start with because every current template registers a sample `greet` tool.
+
+## What the templates do
+
+Each template calls `server.tool(...)` with:
+
+- a tool name: `greet`
+- a description
+- a Zod input schema
+- an async handler
+
+## Why this matters for mcpkit
+
+The current `validate` command checks for tool registration heuristically. It warns if the chosen file does not contain either:
+
+- `registerTool`
+- `server.tool`
+
+That is not deep protocol validation, but it is enough to catch a very empty entry file quickly.

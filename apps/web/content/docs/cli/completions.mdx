@@ -1,0 +1,49 @@
+---
+title: completions
+description: Generate or install shell completions for supported shells.
+---
+
+## Purpose
+
+`mcpkit completions` prints or installs a shell completion script.
+
+## Basic syntax
+
+```bash
+mcpkit completions <shell>
+```
+
+## Verified argument and options
+
+Argument:
+
+- `<shell>`: `bash`, `zsh`, or `fish`
+
+Options:
+
+- `--install`
+- `--print`
+
+## Examples
+
+```bash
+mcpkit completions bash --print
+```
+
+```bash
+mcpkit completions zsh --install
+```
+
+## Install locations
+
+- bash: `~/.local/share/bash-completion/completions/mcpkit`
+- zsh: `~/.zsh/completions/_mcpkit`
+- fish: `~/.config/fish/completions/mcpkit.fish`
+
+## Precision note
+
+The generated completion scripts are useful, but they are not a perfect mirror of the command definitions. For example, the completion scripts advertise `build --clean` while the actual CLI option is `--no-clean`.
+
+## Related commands
+
+- [Shell completions guide](/docs/guides/shell-completions)

@@ -1,0 +1,24 @@
+---
+title: MCP servers
+description: Understand how mcpkit scaffolds MCP servers and what the generated entry file is responsible for.
+---
+
+An MCP server is the process that exposes tools and other protocol features to an MCP client.
+
+In the generated templates, the server entry file is responsible for:
+
+- creating an `McpServer`
+- registering at least one example tool
+- choosing a transport
+- starting the process or HTTP server
+
+## In mcpkit terms
+
+- `basic` = stdio MCP server
+- `http` = Streamable HTTP MCP server
+- `auth` = HTTP MCP server with auth middleware on `/mcp`
+- `full` = HTTP MCP server with auth and extra operational files
+
+## What mcpkit does not abstract away
+
+You still own the application logic in `src/index.ts` and any supporting files. The templates give you a starting point, not a hidden runtime layer.

@@ -1,0 +1,16 @@
+{
+  "title": "CLI Reference",
+  "pages": [
+    "index",
+    "init",
+    "dev",
+    "validate",
+    "build",
+    "test",
+    "docs",
+    "check-env",
+    "doctor",
+    "ship",
+    "completions"
+  ]
+}

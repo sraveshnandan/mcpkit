@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+:root {
+  --bg: #f4f1e8;
+  --bg-elevated: #fbf8f2;
+  --panel: #efe9dc;
+  --panel-strong: #e7dfd1;
+  --ink: #11151a;
+  --muted: #5c6674;
+  --line: #d3cab9;
+  --line-strong: #b7ac9a;
+  --signal: #ffb300;
+  --signal-strong: #e89c00;
+  --transport: #0ea5e9;
+  --danger: #cf5537;
+  --terminal: #101318;
+  --terminal-ink: #f6f3ed;
+}
+
+.dark {
+  --bg: #0d1015;
+  --bg-elevated: #131821;
+  --panel: #151b24;
+  --panel-strong: #1b222c;
+  --ink: #eef1f6;
+  --muted: #94a1b4;
+  --line: #273140;
+  --line-strong: #354153;
+  --signal: #ffb300;
+  --signal-strong: #ffc247;
+  --transport: #42c6ff;
+  --danger: #f07a5c;
+  --terminal: #090c11;
+  --terminal-ink: #edf2f7;
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(255, 179, 0, 0.06), transparent 22%),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.045), transparent 18%),
+    var(--bg);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--line) 36%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--line) 24%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+  opacity: 0.45;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--signal) 30%, transparent);
+}
+
+h1,
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+body,
+.font-body {
+  font-family: var(--font-body), sans-serif;
+}
+
+code,
+pre,
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+main {
+  position: relative;
+}
+
+[data-docs-body] pre,
+.prose pre {
+  border-radius: 1.25rem;
+}
+
+[data-docs-body] code,
+.prose code {
+  font-family: var(--font-mono), monospace;
+}
+
+[data-radix-popper-content-wrapper] {
+  z-index: 60 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

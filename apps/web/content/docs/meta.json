@@ -1,0 +1,23 @@
+{
+  "title": "mcpkit Documentation",
+  "pages": [
+    "index",
+    "why-mcpkit",
+    "---Start here---",
+    "installation",
+    "quick-start",
+    "...getting-started",
+    "---Core concepts---",
+    "...concepts",
+    "---CLI reference---",
+    "...cli",
+    "---Templates---",
+    "...templates",
+    "---Guides---",
+    "...guides",
+    "---Examples---",
+    "...examples",
+    "---Reference & help---",
+    "...help"
+  ]
+}

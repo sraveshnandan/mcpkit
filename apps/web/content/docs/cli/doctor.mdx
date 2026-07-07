@@ -1,0 +1,56 @@
+---
+title: doctor
+description: Diagnose environment, structure, and MCP-specific project health.
+---
+
+## Purpose
+
+`mcpkit doctor` is the broader project-health command.
+
+## Basic syntax
+
+```bash
+mcpkit doctor
+```
+
+## Verified options
+
+- `--json`
+- `-v, --verbose`
+
+## What it checks
+
+### Environment
+
+- Node.js
+- first detected package manager among `bun`, `npm`, `pnpm`
+
+### Project structure
+
+- `package.json`
+- `tsconfig.json`
+- `src/`
+- an entry point such as `src/index.ts`
+
+### MCP-specific items
+
+- `@modelcontextprotocol/sdk`
+- tool definitions
+- MCP config files among:
+  - `.vscode/mcp.json`
+  - `.cursor/mcp.json`
+  - `.claude/mcp.json`
+  - `mcp.json`
+
+## Output modes
+
+Text mode groups results into sections. JSON mode returns `environment`, `project`, `mcp`, and `summary` keys.
+
+## Current caveat
+
+One current suggestion string in the implementation references `mcpkit config generate`, but that command does not exist. Treat the checks themselves as the reliable part, not every suggested fix message.
+
+## Related commands
+
+- [check-env](/docs/cli/check-env)
+- [Diagnostics guide](/docs/guides/diagnostics)

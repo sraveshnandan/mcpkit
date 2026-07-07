@@ -1,0 +1,9 @@
+{
+  "title": "Examples",
+  "pages": [
+    "index",
+    "basic-stdio-server",
+    "http-server",
+    "authenticated-http-server"
+  ]
+}

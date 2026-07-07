@@ -1,0 +1,384 @@
+import Link from 'next/link';
+import {
+  ArrowRight,
+  Bug,
+  CircleAlert,
+  Command,
+  GitBranch,
+  PackageSearch,
+  Radar,
+  SearchCode,
+  ShieldCheck,
+  Terminal,
+  TestTube2,
+  Wrench,
+} from 'lucide-react';
+
+import { CommandExplorer } from '@/components/command-explorer';
+import { HeroDemo } from '@/components/hero-demo';
+import { ProjectStructureView } from '@/components/project-structure-view';
+import { SiteFooter } from '@/components/site-footer';
+import { SiteHeader } from '@/components/site-header';
+import { TemplateJourney } from '@/components/template-journey';
+import { ButtonLink } from '@/components/ui/button-link';
+import { CommandBlock } from '@/components/ui/command-block';
+import { PipelineRail } from '@/components/ui/pipeline-rail';
+import { SectionLabel } from '@/components/ui/section-label';
+import { installCommand, quickStartCreateCommand, site } from '@/lib/site';
+
+const workflow = ['init', 'dev', 'test', 'validate', 'doctor', 'build', 'ship'];
+
+const fragmentation = [
+  ['Project setup', 'Create files, package scripts, and the first entry point yourself.'],
+  ['Transport wiring', 'Choose stdio or HTTP and connect transport details correctly.'],
+  ['Validation', 'Catch obvious mistakes before runtime and editor integration.'],
+  ['Diagnostics', 'Check environment, SDK presence, structure, and config files.'],
+  ['Client configuration', 'Add working MCP client config instead of starting from scratch.'],
+  ['Release flow', 'Run tests, build, bump versions, and publish consistently.'],
+] as const;
+
+const experience = [
+  {
+    title: 'Development workflow',
+    body: 'The generated projects come with watch-mode scripts, and the CLI exposes a `dev` command with inspector and test-watcher helpers.',
+    icon: Terminal,
+  },
+  {
+    title: 'Testing and validation',
+    body: 'Use the generated Vitest scripts, `mcpkit test`, and `mcpkit validate` for quick checks from the terminal.',
+    icon: TestTube2,
+  },
+  {
+    title: 'Diagnostics',
+    body: '`check-env` and `doctor` cover environment readiness, project structure, SDK presence, and MCP config discovery.',
+    icon: SearchCode,
+  },
+  {
+    title: 'Inspector and debugging',
+    body: '`mcpkit dev --inspect` links to the official MCP Inspector instead of inventing another local debugging layer.',
+    icon: Radar,
+  },
+  {
+    title: 'Build and ship',
+    body: '`build` and `ship` keep the release path close to the rest of the toolkit instead of leaving production steps disconnected.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Shell completions',
+    body: 'Generate or install completions for bash, zsh, and fish directly from the CLI.',
+    icon: Wrench,
+  },
+] as const;
+
+const faqs = [
+  {
+    q: 'What is mcpkit?',
+    a: 'It is a CLI toolkit for scaffolding and working with TypeScript MCP servers. The current implementation covers project creation, local development helpers, testing, validation, diagnostics, docs generation, builds, shipping, and shell completions.',
+  },
+  {
+    q: 'Do I need to understand MCP before using it?',
+    a: 'Not deeply. The `basic` template gets you to a running MCP server quickly, and the docs explain MCP concepts only in the context needed to use mcpkit effectively.',
+  },
+  {
+    q: 'Which template should I choose?',
+    a: 'Choose `basic` for stdio and the smallest surface area, `http` for a Streamable HTTP endpoint, `auth` for bearer-token protection on `/mcp`, and `full` when you also want logging, metrics, health checks, and linting/formatting config.',
+  },
+  {
+    q: 'Can I use npm, pnpm, or Bun?',
+    a: 'Yes. `init` supports `bun`, `npm`, and `pnpm`. The quickest broadly compatible path on this site uses npm because it is present in most Node setups. The `ship` command can also detect Yarn from lockfiles, but the environment-check commands do not actively verify Yarn.',
+  },
+  {
+    q: 'Can I keep using the generated project without the CLI later?',
+    a: 'Yes. The generated output is an ordinary Node/TypeScript project with package scripts. After scaffolding, you can work inside the project directly with its generated scripts.',
+  },
+] as const;
+
+export default function HomePage() {
+  return (
+    <>
+      <SiteHeader />
+      <main>
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-16 sm:px-6 md:py-20 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-24">
+            <div className="space-y-8">
+              <SectionLabel>MCP development pipeline</SectionLabel>
+              <div className="space-y-5">
+                <h1 className="max-w-3xl font-display text-5xl leading-none tracking-[-0.05em] text-[var(--ink)] sm:text-6xl lg:text-7xl">
+                  Build production-ready MCP servers without rebuilding the workflow around them.
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
+                  {site.tagline} `mcpkit` connects scaffolding, development, testing, validation,
+                  diagnostics, documentation, builds, and publishing into one coherent path.
+                </p>
+              </div>
+              <CommandBlock label="install" command={installCommand} />
+              <div className="flex flex-wrap items-center gap-3">
+                <ButtonLink href={site.quickStartUrl}>
+                  Quick Start
+                  <ArrowRight className="size-4" />
+                </ButtonLink>
+                <ButtonLink href={site.githubUrl} variant="secondary" external>
+                  GitHub
+                  <GitBranch className="size-4" />
+                </ButtonLink>
+              </div>
+              <PipelineRail items={workflow} />
+            </div>
+            <HeroDemo />
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>The problem</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                Building the server is only part of the job.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                Raw MCP SDK boilerplate gets you to an entry file. It does not give you a complete
+                developer workflow. `mcpkit` is most useful in the gaps around the server itself.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {fragmentation.map(([title, body]) => (
+                <article key={title} className="rounded-[1.6rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
+                  <div className="mb-3 flex items-center gap-3 text-sm font-medium text-[var(--ink)]">
+                    <CircleAlert className="size-4 text-[var(--danger)]" />
+                    {title}
+                  </div>
+                  <p className="text-sm leading-7 text-[var(--muted)]">{body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>Unified workflow</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                One toolkit, one command language, one visible path to shipping.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                The commands are designed as a system rather than isolated utilities. You scaffold,
+                run, test, validate, diagnose, build, and ship from the same toolchain.
+              </p>
+            </div>
+            <div className="rounded-[2rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-6">
+              <PipelineRail items={[...workflow, 'docs', 'check-env', 'completions']} className="bg-transparent border-0 p-0" />
+            </div>
+          </div>
+        </section>
+
+        <section id="cli" className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>Interactive command explorer</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                Explore the actual CLI surface, not imagined marketing syntax.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                Every command, option, and preview here is derived from the current repository.
+              </p>
+            </div>
+            <CommandExplorer />
+          </div>
+        </section>
+
+        <section id="templates" className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>Templates</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                Progress from minimal stdio to a fuller operational baseline.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                The templates are not duplicates. Each one adds a verified layer of capability and generated structure.
+              </p>
+            </div>
+            <TemplateJourney />
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>Developer experience</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                More than scaffolding: the surrounding workflow is part of the product.
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {experience.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title} className="rounded-[1.6rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--line)] bg-[var(--bg)]">
+                      <Icon className="size-5 text-[var(--transport)]" />
+                    </div>
+                    <h3 className="text-lg font-semibold tracking-tight text-[var(--ink)]">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{item.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>Generated project experience</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                See the actual project shape users get after `mcpkit init`.
+              </h2>
+            </div>
+            <ProjectStructureView />
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+            <div className="space-y-4">
+              <SectionLabel>Quick Start</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                The shortest reliable path to a working MCP server.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                This path uses the currently published package name and an explicit npm package-manager choice,
+                so it remains usable even if you do not have Bun installed yet.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <CommandBlock label="install" command={installCommand} />
+              <CommandBlock label="create" command={quickStartCreateCommand} />
+              <CommandBlock label="develop" command={'cd hello-mcp && npm run dev'} />
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+            <div className="space-y-4">
+              <SectionLabel>Documentation bridge</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                Learn, reference, and troubleshoot without leaving the product experience.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                The docs live in the same app, use the same visual system, and are written from verified command behavior and generated template output.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { title: 'Getting Started', href: '/docs/getting-started', icon: Terminal },
+                { title: 'CLI Reference', href: '/docs/cli', icon: Command },
+                { title: 'Templates', href: '/docs/templates', icon: PackageSearch },
+                { title: 'Troubleshooting', href: '/docs/help/troubleshooting', icon: Bug },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="rounded-[1.6rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5 transition-colors hover:border-[var(--signal)]"
+                  >
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--line)] bg-[var(--bg)]">
+                      <Icon className="size-5 text-[var(--transport)]" />
+                    </div>
+                    <div className="text-lg font-semibold tracking-tight text-[var(--ink)]">{item.title}</div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+            <div className="space-y-4">
+              <SectionLabel>Open source</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                Open repository, visible code, real contribution paths.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                No invented stats, no fabricated logos, no testimonial theater. Just the repository, the package, contribution docs, and the current roadmap in context.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { title: 'Source code', href: site.githubUrl, text: 'Browse the monorepo and inspect the CLI source directly.', external: true },
+                { title: 'npm package', href: site.npmUrl, text: 'Install the current published package: mcpkit-cli.', external: true },
+                { title: 'Contributing', href: 'https://github.com/sraveshnandan/mcpkit/blob/main/CONTRIBUTING.md', text: 'Read contribution guidelines before opening changes.', external: true },
+                { title: 'Documentation', href: '/docs', text: 'Move from discovery into reference without leaving the app.', external: false },
+              ].map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="rounded-[1.6rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5 transition-colors hover:border-[var(--signal)]"
+                  {...(item.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                >
+                  <div className="mb-2 text-lg font-semibold tracking-tight text-[var(--ink)]">{item.title}</div>
+                  <p className="text-sm leading-7 text-[var(--muted)]">{item.text}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                Adoption questions answered from the current implementation.
+              </h2>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-2">
+              {faqs.map((item) => (
+                <article key={item.q} className="rounded-[1.6rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
+                  <h3 className="text-lg font-semibold tracking-tight text-[var(--ink)]">{item.q}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{item.a}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+            <div className="rounded-[2rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-8 md:p-10">
+              <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div className="space-y-4">
+                  <SectionLabel>Final CTA</SectionLabel>
+                  <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                    Understand it. Try it. Keep going in the docs.
+                  </h2>
+                  <p className="max-w-3xl text-base leading-8 text-[var(--muted)]">
+                    The shortest path starts with the install command, continues through Quick Start, and stays grounded in the repository-backed docs.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3 lg:justify-end">
+                  <ButtonLink href={site.quickStartUrl}>
+                    Quick Start
+                    <ArrowRight className="size-4" />
+                  </ButtonLink>
+                  <ButtonLink href={site.npmUrl} variant="secondary" external>
+                    Install package
+                    <PackageSearch className="size-4" />
+                  </ButtonLink>
+                  <ButtonLink href={site.githubUrl} variant="secondary" external>
+                    GitHub
+                    <GitBranch className="size-4" />
+                  </ButtonLink>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <SiteFooter />
+    </>
+  );
+}

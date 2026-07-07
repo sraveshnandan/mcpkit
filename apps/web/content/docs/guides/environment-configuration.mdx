@@ -1,0 +1,44 @@
+---
+title: Environment configuration
+description: Configure the local environment and template-specific variables the current implementation expects.
+---
+
+## Global environment readiness
+
+Use:
+
+```bash
+mcpkit check-env
+```
+
+This checks Node.js, package managers, package metadata, TypeScript, the MCP SDK, and `src/` presence.
+
+## Template-specific variables
+
+### HTTP templates
+
+The generated HTTP servers listen on:
+
+```text
+PORT
+```
+
+with a fallback of `3100`.
+
+### Auth template
+
+Uses:
+
+- `AUTH_ISSUER`
+- `AUTH_AUDIENCE`
+- `AUTH_JWKS_URI`
+
+### Full template
+
+Uses the auth variables plus:
+
+- `LOG_LEVEL`
+
+## Important distinction
+
+The CLI `dev` command sets `MCPKIT_PORT`, but the generated HTTP templates read `PORT`. Keep that distinction in mind when debugging local startup behavior.

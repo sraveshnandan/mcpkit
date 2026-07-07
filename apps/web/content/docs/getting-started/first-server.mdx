@@ -1,0 +1,44 @@
+---
+title: Create your first MCP server
+description: Use the current templates correctly and understand what the init command will do.
+---
+
+## Choose a template deliberately
+
+For a first project, the best default is usually `basic`.
+
+It gives you:
+
+- stdio transport
+- one example tool
+- the smallest generated surface area
+
+## Recommended first command
+
+```bash
+mcpkit init hello-mcp --template basic --package-manager npm --yes
+```
+
+## What happens during generation
+
+From the current `init` implementation:
+
+1. the template name is validated
+2. the target directory is checked for conflicts
+3. files are written from the template registry
+4. dependencies are installed automatically in `--yes` mode
+5. next steps are printed
+
+## Important behavior
+
+In `--yes` mode, the command exits with an error if:
+
+- you omit the project name
+- you omit `--template`
+
+If scaffolding fails, the partially created directory is removed.
+
+## Related pages
+
+- [Run it](/docs/getting-started/run-it)
+- [Templates overview](/docs/templates)

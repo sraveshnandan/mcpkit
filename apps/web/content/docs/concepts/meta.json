@@ -1,0 +1,11 @@
+{
+  "title": "Core Concepts",
+  "pages": [
+    "index",
+    "mcp-servers",
+    "tools",
+    "resources",
+    "prompts",
+    "transports"
+  ]
+}

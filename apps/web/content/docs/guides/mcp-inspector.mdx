@@ -1,0 +1,22 @@
+---
+title: MCP Inspector
+description: Use the official MCP Inspector with the current dev workflow.
+---
+
+`mcpkit` intentionally links to the official inspector instead of shipping its own local inspector.
+
+## Open it from the CLI
+
+```bash
+mcpkit dev --inspect
+```
+
+## What happens
+
+- the CLI waits briefly for the dev process to start
+- then it opens `https://modelcontextprotocol.io/inspector`
+- if `--transport http` is used, it appends the local `/mcp` URL as a query parameter
+
+## Precision note
+
+The current CLI helper only opens the inspector URL. It does not replace the need to run a real local server process.

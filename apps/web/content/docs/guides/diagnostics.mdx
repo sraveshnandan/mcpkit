@@ -1,0 +1,28 @@
+---
+title: Diagnostics
+description: Use check-env and doctor together to narrow down project and environment problems.
+---
+
+## Use both commands for different scopes
+
+### `check-env`
+
+Use it when you want a quick readiness check.
+
+### `doctor`
+
+Use it when you want a broader structural and MCP-specific diagnosis.
+
+## Practical sequence
+
+```bash
+mcpkit check-env
+mcpkit doctor
+```
+
+## When `doctor` is especially useful
+
+- you are unsure whether the current directory is a valid project root
+- the MCP SDK dependency is missing
+- you cannot tell whether tool definitions are present
+- your MCP config files are missing or mislocated

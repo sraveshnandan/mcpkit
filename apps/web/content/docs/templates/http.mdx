@@ -1,0 +1,54 @@
+---
+title: http
+description: Streamable HTTP template with Express, a home route, and a health route.
+---
+
+## Intended use case
+
+Choose `http` when you need an HTTP MCP endpoint instead of stdio.
+
+## Transport
+
+The generated server uses `StreamableHTTPServerTransport`.
+
+## Generated structure
+
+The file set matches `basic`, but `src/index.ts` contains Express route handling.
+
+## Included capabilities
+
+- Express server
+- home route at `/`
+- health route at `/health`
+- MCP route at `/mcp`
+- `GET /mcp` informational JSON response
+- default port `3100`
+
+## How to run
+
+```bash
+npm run dev
+```
+
+## How to test manually
+
+After starting the server, inspect:
+
+- `http://localhost:3100/`
+- `http://localhost:3100/health`
+- `http://localhost:3100/mcp`
+
+## Configuration
+
+The generated VS Code config uses:
+
+```json
+{
+  "type": "http",
+  "url": "http://localhost:3100/mcp"
+}
+```
+
+## Next steps
+
+If you also need auth middleware, move to [auth](/docs/templates/auth).

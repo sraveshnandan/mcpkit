@@ -1,0 +1,45 @@
+---
+title: full
+description: The widest current template, adding auth, logging, health checks, metrics, linting, and formatting.
+---
+
+## Intended use case
+
+Choose `full` when you want a broader project baseline and you are comfortable starting from a more operational template.
+
+## Generated structure
+
+Adds these files beyond the shared baseline:
+
+- `src/auth.ts`
+- `src/logger.ts`
+- `src/health.ts`
+- `src/metrics.ts`
+- `eslint.config.js`
+- `.prettierrc`
+
+## Included capabilities
+
+- authenticated `/mcp`
+- home route
+- health route
+- metrics route
+- Pino-based logger
+- ESLint and Prettier config files
+
+## Default runtime details
+
+- HTTP port: `3100`
+- logger level: `process.env.LOG_LEVEL || 'info'`
+- metrics are in-memory
+
+## Current caveats
+
+The generated `full` template is useful, but it is also the template where current implementation issues matter most.
+
+At the time of this documentation pass:
+
+- `src/index.ts` imports `logger` but does not use it
+- `src/metrics.ts` references `express` types without importing `express`
+
+Treat the template as a production-oriented starting point, not a promise that every operational concern is already complete.

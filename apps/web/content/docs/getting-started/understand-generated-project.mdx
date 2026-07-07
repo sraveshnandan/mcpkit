@@ -1,0 +1,51 @@
+---
+title: Understand the generated project
+description: Read the generated structure with confidence instead of reverse-engineering it from scratch.
+---
+
+Every generated project includes a common baseline:
+
+- `package.json`
+- `tsconfig.json`
+- `src/index.ts`
+- `.gitignore`
+- `README.md`
+- `LICENSE`
+- `.vscode/mcp.json`
+
+## What changes by template
+
+### `basic`
+
+Adds only the minimum server entry for stdio.
+
+### `http`
+
+Uses Express and `StreamableHTTPServerTransport` in `src/index.ts`.
+
+### `auth`
+
+Adds `src/auth.ts` and applies auth middleware to `/mcp`.
+
+### `full`
+
+Adds:
+
+- `src/auth.ts`
+- `src/logger.ts`
+- `src/health.ts`
+- `src/metrics.ts`
+- `eslint.config.js`
+- `.prettierrc`
+
+## Client configuration
+
+All current templates generate **only** `.vscode/mcp.json` automatically.
+
+The repository contains README examples for other clients, but those are examples, not generated files.
+
+## Package scripts
+
+The generated project is a normal Node/TypeScript project. After generation, you can work from its scripts directly.
+
+That is a deliberate strength: you do not become dependent on the CLI after the initial scaffold.

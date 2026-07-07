@@ -1,0 +1,46 @@
+---
+title: test
+description: Run Vitest through the CLI for the current project.
+---
+
+## Purpose
+
+`mcpkit test` shells out to Vitest.
+
+## Basic syntax
+
+```bash
+mcpkit test
+```
+
+## Verified options
+
+- `-w, --watch`
+- `--coverage`
+- `-v, --verbose`
+
+## Examples
+
+```bash
+mcpkit test
+```
+
+```bash
+mcpkit test --watch
+```
+
+```bash
+mcpkit test --coverage
+```
+
+## Expected behavior
+
+- runs `npx vitest run` by default
+- runs `npx vitest` if `--watch` is set
+- appends `--coverage` if requested
+
+## Related commands
+
+- [validate](/docs/cli/validate)
+- [dev](/docs/cli/dev)
+- [Testing MCP servers](/docs/guides/testing-mcp-servers)

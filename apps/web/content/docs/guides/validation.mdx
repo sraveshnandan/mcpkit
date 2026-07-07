@@ -1,0 +1,25 @@
+---
+title: Validation
+description: Use mcpkit's current validation features without expecting more than the implementation provides.
+---
+
+## What validation means today
+
+There are two levels of validation in the current ecosystem around `mcpkit`:
+
+1. the generated project's normal TypeScript and test scripts
+2. `mcpkit validate` for quick entry-file heuristics
+
+## What `mcpkit validate` is good at
+
+- spotting a missing `McpServer`
+- spotting an entry file with no obvious tool registration
+- catching missing name/version strings quickly
+
+## What it is not
+
+- full schema validation
+- runtime protocol validation
+- end-to-end client verification
+
+Use it as a fast smoke check, not as your only verification layer.

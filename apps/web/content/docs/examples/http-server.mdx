@@ -1,0 +1,18 @@
+---
+title: HTTP server
+description: Understand the generated HTTP template as a real route-oriented starting point.
+---
+
+The `http` template adds an Express server and a Streamable HTTP MCP route.
+
+## Verified route shape
+
+- `GET /`
+- `GET /health`
+- `ALL /mcp`
+
+For `GET /mcp`, the generated code returns a helpful JSON message telling you to use `POST`.
+
+## Why this example matters
+
+This template is the clearest starting point when you need a visible HTTP surface and want to inspect the server with normal route checks while still exposing MCP behavior.

@@ -1,0 +1,34 @@
+---
+title: Publishing
+description: Use the current ship flow with realistic expectations about package-manager detection and dry runs.
+---
+
+## Start with a dry run
+
+```bash
+mcpkit ship --dry-run
+```
+
+This is the safest way to understand what the command will attempt.
+
+## What `ship` does
+
+- detects a package manager
+- prompts for confirmation
+- runs tests
+- runs a build
+- bumps `package.json` version
+- publishes using the detected package-manager command
+
+## Detected publish commands
+
+- `bun publish`
+- `pnpm publish`
+- `yarn publish`
+- `npm publish`
+
+## Recommended workflow
+
+1. run package scripts locally first
+2. run `mcpkit ship --dry-run`
+3. run `mcpkit ship --bump patch` only when the project is ready

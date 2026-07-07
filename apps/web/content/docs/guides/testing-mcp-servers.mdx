@@ -1,0 +1,41 @@
+---
+title: Testing MCP servers
+description: Test generated projects using the scripts and commands the repository currently provides.
+---
+
+## Start with the generated scripts
+
+Every template includes Vitest scripts.
+
+```bash
+npm run test
+npm run test:watch
+```
+
+## Use the CLI when helpful
+
+```bash
+mcpkit test --coverage
+```
+
+## Template-specific testing ideas
+
+### `basic`
+
+Check that the `greet` tool remains registered and the server starts cleanly.
+
+### `http`
+
+Exercise `/`, `/health`, and `/mcp`.
+
+### `auth`
+
+Verify that `/mcp` requires a Bearer token and that `/health` remains open.
+
+### `full`
+
+Also inspect `/metrics` and logging behavior.
+
+## Precision note
+
+The current repository does not ship an advanced MCP integration test harness for generated projects. Use the generated scripts and route-level checks as your baseline.

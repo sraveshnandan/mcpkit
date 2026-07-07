@@ -1,0 +1,46 @@
+---
+title: docs
+description: Generate a simple project documentation file from the current source tree.
+---
+
+## Purpose
+
+`mcpkit docs` creates a basic Markdown file for the current project.
+
+## Basic syntax
+
+```bash
+mcpkit docs
+```
+
+## Verified options
+
+- `-o, --outDir <outDir>` default: `docs`
+- `-v, --verbose`
+
+## Example
+
+```bash
+mcpkit docs --outDir docs
+```
+
+## Expected behavior
+
+The current implementation:
+
+- creates the output directory if it does not exist
+- looks for `src/tools/*.ts`
+- extracts tool names using regular expressions
+- reads `README.md` if present
+- writes `api.md` into the output directory
+
+## Precision note
+
+This command does **not** generate a full documentation site. It writes a single `api.md` file.
+
+The current output also contains hardcoded assumptions, including Bun-flavored quick-start commands and a stdio-based VS Code config example.
+
+## Related commands
+
+- [init](/docs/cli/init)
+- [Generated project structure](/docs/getting-started/understand-generated-project)

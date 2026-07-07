@@ -1,0 +1,60 @@
+---
+title: basic
+description: Minimal stdio MCP server scaffold for learning and fast starts.
+---
+
+## Intended use case
+
+Choose `basic` when you want the smallest possible scaffold.
+
+## Transport
+
+`basic` uses `StdioServerTransport`.
+
+## Generated structure
+
+Verified generated files:
+
+- `package.json`
+- `tsconfig.json`
+- `src/index.ts`
+- `.gitignore`
+- `README.md`
+- `LICENSE`
+- `.vscode/mcp.json`
+
+## Included capabilities
+
+- one example `greet` tool
+- stdio server startup
+- generated VS Code MCP config
+
+## How to run
+
+```bash
+npm run dev
+```
+
+## How to test
+
+```bash
+npm run test
+```
+
+## Configuration
+
+The generated `.vscode/mcp.json` uses:
+
+```json
+{
+  "type": "stdio",
+  "command": "node",
+  "args": ["./dist/index.js"]
+}
+```
+
+## Next steps
+
+- add your real tools in `src/index.ts`
+- keep stdio if local-process integration is enough
+- move to `http` only when you need an HTTP endpoint

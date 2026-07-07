@@ -1,0 +1,58 @@
+---
+title: Why mcpkit?
+description: See the specific workflow gaps mcpkit addresses around MCP server development.
+---
+
+If you start from the raw MCP SDK, you still need to make a series of decisions before the project feels usable.
+
+## The gap mcpkit fills
+
+The current toolkit is strongest in the work **around** the server:
+
+- project scaffolding
+- transport-oriented template selection
+- generated scripts for development and build tasks
+- initial MCP client configuration for VS Code
+- validation heuristics
+- environment checks
+- project diagnostics
+- publishing flow helpers
+
+## The core value
+
+The main value proposition is not "less code to type."
+
+It is:
+
+> less workflow you have to reconstruct manually.
+
+That is why the landing page and docs use the same command pipeline vocabulary:
+
+```text
+init → dev → test → validate → doctor → build → ship
+```
+
+## Why not just copy boilerplate?
+
+You can, but then you own every workflow choice separately.
+
+With `mcpkit`, you start from a generated project with:
+
+- scripts already present in `package.json`
+- a template-specific `src/index.ts`
+- a `tsconfig.json`
+- a generated `README.md`
+- a generated `LICENSE`
+- a generated `.vscode/mcp.json`
+
+The higher-complexity templates also add auth, logging, health, metrics, linting, and formatting files.
+
+## Important precision
+
+Some current README copy in the repository is broader than the actual implementation. These docs use the code and generated output as the source of truth.
+
+That is why this site uses precise language like:
+
+- **Streamable HTTP** instead of a generic "remote transport"
+- **bearer-token verification** instead of claiming a complete OAuth authorization flow scaffold
+- **heuristic validation** instead of claiming deep protocol validation

@@ -1,0 +1,39 @@
+---
+title: auth
+description: HTTP template with bearer-token verification on the MCP route.
+---
+
+## Intended use case
+
+Choose `auth` when you want the HTTP template plus route protection for `/mcp`.
+
+## Transport
+
+Like `http`, it uses Streamable HTTP over Express.
+
+## Generated structure
+
+Adds `src/auth.ts` on top of the HTTP template baseline.
+
+## Included capabilities
+
+- all `http` template routes
+- auth middleware applied to `/mcp`
+- unauthenticated `/` and `/health`
+- Bearer token handling through `Authorization` headers
+
+## Environment variables used by generated code
+
+- `AUTH_ISSUER` default: `https://auth.example.com`
+- `AUTH_AUDIENCE` default: server name
+- `AUTH_JWKS_URI` no default
+
+## Important precision
+
+The current implementation verifies bearer tokens with `jose.jwtVerify` and only initializes a signing key when `AUTH_JWKS_URI` is set.
+
+Do **not** treat this template as a complete authorization-flow scaffold. It is a route-protection starting point and needs real JWKS-backed configuration to work correctly.
+
+## Generated client config
+
+The generated `.vscode/mcp.json` includes an `Authorization` header placeholder using `${env:AUTH_TOKEN}`.

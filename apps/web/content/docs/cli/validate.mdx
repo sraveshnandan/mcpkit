@@ -1,0 +1,47 @@
+---
+title: validate
+description: Run lightweight source-file validation heuristics against a project entry file.
+---
+
+## Purpose
+
+`mcpkit validate` performs quick checks against a chosen source file.
+
+## Basic syntax
+
+```bash
+mcpkit validate
+```
+
+## Verified options
+
+- `-f, --file <file>` default: `src/index.ts`
+- `-v, --verbose`
+
+## Examples
+
+```bash
+mcpkit validate --file src/index.ts
+```
+
+## Expected behavior
+
+The current implementation reads the file and checks for specific strings.
+
+It:
+
+- errors if `McpServer` is missing
+- warns if no tool registration is found via `registerTool` or `server.tool`
+- warns if no transport-related string is found
+- warns if `name:` is missing
+- warns if `version:` is missing
+
+## Precision note
+
+This is **heuristic validation**, not deep protocol validation or build-time analysis.
+
+## Related commands
+
+- [test](/docs/cli/test)
+- [doctor](/docs/cli/doctor)
+- [Validation guide](/docs/guides/validation)

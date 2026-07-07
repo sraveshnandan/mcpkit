@@ -1,0 +1,37 @@
+---
+title: Choosing a template
+description: Pick the right template based on transport, complexity, and current implementation details.
+---
+
+## Start with `basic` if you want
+
+- stdio transport
+- the smallest generated code surface
+- a good first MCP project
+
+## Use `http` if you need
+
+- an Express server
+- a `/mcp` HTTP endpoint
+- a home route and health route
+- a default port of `3100`
+
+## Use `auth` if you need
+
+- the HTTP template shape
+- bearer-token verification on `/mcp`
+- a separate `src/auth.ts`
+
+Current precision: this template verifies bearer tokens with `jose`. It is not a full authorization-flow scaffold.
+
+## Use `full` if you want
+
+- the authenticated HTTP baseline
+- logging
+- health checks
+- metrics
+- linting and formatting config files
+
+## Warning about complexity
+
+The `full` template is the broadest starting point, but it also has the most moving pieces. If you are still learning MCP or transport basics, start with `basic` or `http` and move up only when you need the added surface area.

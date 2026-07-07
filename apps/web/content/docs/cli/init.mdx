@@ -1,0 +1,59 @@
+---
+title: init
+description: Create a new MCP server project from one of the current templates.
+---
+
+## Purpose
+
+`mcpkit init` scaffolds a new project directory from one of the four templates.
+
+## Basic syntax
+
+```bash
+mcpkit init [name]
+```
+
+## Verified options
+
+- `-t, --template <template>`
+- `-p, --package-manager <pm>` default: `bun`
+- `-y, --yes`
+
+Valid template names are:
+
+- `basic`
+- `http`
+- `auth`
+- `full`
+
+## Examples
+
+### Interactive
+
+```bash
+mcpkit init
+```
+
+### Non-interactive
+
+```bash
+mcpkit init my-server --template basic --package-manager npm --yes
+```
+
+## Expected behavior
+
+- interactive mode requires a TTY
+- non-interactive mode requires both a project name and `--template`
+- `--yes` installs dependencies automatically
+- template names are validated before scaffolding starts
+- if generation fails after directory creation, the directory is removed
+
+## Important caveat
+
+In interactive mode, `--package-manager` does not skip the package-manager prompt. The implementation still prompts for package-manager choice.
+
+## Related commands
+
+- [dev](/docs/cli/dev)
+- [build](/docs/cli/build)
+- [templates](/docs/templates)

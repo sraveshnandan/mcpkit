@@ -1,0 +1,22 @@
+---
+title: Authenticated HTTP server
+description: Use the current auth template with realistic expectations about bearer-token verification and JWKS configuration.
+---
+
+The `auth` template protects `/mcp` with middleware from `src/auth.ts`.
+
+## What the generated middleware expects
+
+- an `Authorization` header starting with `Bearer `
+- issuer and audience values
+- a signing key initialized from `AUTH_JWKS_URI`
+
+## What this example is good for
+
+- understanding how auth is inserted into the generated route tree
+- seeing how the VS Code config can include a bearer token header
+- starting from a protected route layout instead of hand-wiring middleware later
+
+## Important limitation
+
+If `AUTH_JWKS_URI` is not set, the current implementation does not establish a verifier key. Treat this template as a starting point that needs real auth configuration before use.

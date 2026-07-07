@@ -54,3 +54,6 @@ coverage/
 testing/
 session.md
 session.json
+
+# Next.js
+.next/

@@ -1,0 +1,51 @@
+---
+title: What is mcpkit?
+description: Understand what mcpkit is, what it solves, and how it fits into real MCP development.
+---
+
+`mcpkit` is a CLI toolkit for building and operating TypeScript Model Context Protocol servers.
+
+The easiest way to understand it is this:
+
+> `mcpkit` is trying to be the `create-next-app` for MCP servers — but for the full development workflow, not only the first scaffold step.
+
+## What it does today
+
+From the current repository, `mcpkit` gives you a command set for:
+
+- creating a project from one of four templates
+- running a development workflow
+- testing
+- validating an entry file
+- generating a simple project `api.md`
+- checking local environment readiness
+- diagnosing project health
+- building for production
+- publishing a package
+- installing shell completions
+
+## Why it exists
+
+Building an MCP server usually means more than just writing tool handlers.
+
+You also need to decide how the project is structured, how transport is wired, how to run it locally, how to test it, how to validate obvious mistakes, how to configure clients, and how to package or publish the result.
+
+`mcpkit` brings those pieces together under one command language.
+
+## What it does not try to be
+
+This documentation stays close to the codebase.
+
+That means it does **not** describe roadmap ideas as current features. For example:
+
+- Docker generation is deferred
+- Python templates are deferred
+- cloud deployment automation is deferred
+- the current templates generate `.vscode/mcp.json`, not every editor config automatically
+
+## Start with these pages
+
+- [Why mcpkit?](/docs/why-mcpkit)
+- [Installation](/docs/installation)
+- [Quick Start](/docs/quick-start)
+- [Getting Started](/docs/getting-started)

@@ -1,0 +1,57 @@
+---
+title: Quick Start
+description: Create and run a verified mcpkit project in under two minutes.
+---
+
+This is the shortest broadly compatible path based on the current implementation.
+
+## 1. Install the CLI
+
+```bash
+npm install -g mcpkit-cli
+```
+
+## 2. Create a project
+
+```bash
+mcpkit init hello-mcp --template basic --package-manager npm --yes
+```
+
+Verified behavior of this command:
+
+- uses the `basic` template
+- sets the description to `A hello-mcp MCP server`
+- installs dependencies automatically
+- generates `.vscode/mcp.json`
+
+## 3. Start the generated server
+
+```bash
+cd hello-mcp
+npm run dev
+```
+
+The generated `basic` template runs:
+
+```bash
+tsx watch src/index.ts
+```
+
+## 4. What you get
+
+The generated project includes:
+
+- `src/index.ts`
+- `package.json`
+- `tsconfig.json`
+- `README.md`
+- `LICENSE`
+- `.vscode/mcp.json`
+
+The generated server creates an `McpServer`, registers a `greet` tool, connects via `StdioServerTransport`, and logs a startup message to stderr.
+
+## 5. Next steps
+
+- [Create your first MCP server](/docs/getting-started/first-server)
+- [Run it](/docs/getting-started/run-it)
+- [Understand the generated project](/docs/getting-started/understand-generated-project)

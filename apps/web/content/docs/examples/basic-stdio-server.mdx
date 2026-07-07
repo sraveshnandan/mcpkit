@@ -1,0 +1,37 @@
+---
+title: Basic stdio server
+description: The smallest current example built directly from the generated basic template shape.
+---
+
+The generated `basic` template already gives you the example tool:
+
+```ts
+server.tool(
+  'greet',
+  'Greet someone by name',
+  { name: z.string().describe('Name of the person to greet') },
+  async ({ name }) => ({
+    content: [
+      {
+        type: 'text' as const,
+        text: `Hello, ${name}! Welcome to ${SERVER_NAME}.`,
+      },
+    ],
+  })
+);
+```
+
+## Why this example matters
+
+It shows the smallest complete loop in the current toolkit:
+
+- create a project
+- run the dev script
+- confirm a tool exists
+- connect over stdio
+
+## Use it when
+
+- you are learning MCP basics
+- you want minimal generated structure
+- you do not need an HTTP endpoint yet

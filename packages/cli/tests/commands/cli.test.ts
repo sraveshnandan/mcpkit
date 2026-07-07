@@ -8,7 +8,7 @@ const CLI_PATH = path.resolve(__dirname, '../../bin/mcpkit.ts');
 
 describe('mcpkit CLI', () => {
   it('should show help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -16,7 +16,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show version', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, '--version'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, '--version'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -24,7 +24,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show init help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'init', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'init', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -32,7 +32,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show build help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'build', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'build', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -40,7 +40,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show dev help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'dev', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'dev', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -48,7 +48,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show validate help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'validate', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'validate', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -56,7 +56,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show test help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'test', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'test', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -64,7 +64,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show docs help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'docs', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'docs', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -72,7 +72,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show check-env help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'check-env', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'check-env', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);
@@ -80,7 +80,7 @@ describe('mcpkit CLI', () => {
   });
 
   it('should show ship help', async () => {
-    const result = await execa('npx', ['tsx', CLI_PATH, 'ship', '--help'], {
+    const result = await execa('bunx', ['tsx', CLI_PATH, 'ship', '--help'], {
       reject: false,
     });
     expect(result.exitCode).toBe(0);

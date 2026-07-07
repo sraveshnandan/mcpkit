@@ -1,0 +1,92 @@
+---
+title: Installation
+description: Install the current published CLI and choose a package-manager path that matches the implementation.
+---
+
+## Runtime requirements
+
+Verified from the repository:
+
+- the monorepo root declares `node >=18`
+- the CLI package also declares `node >=18`
+- `check-env` treats Node.js 18+ as required
+
+## Install the CLI
+
+The published package name is currently:
+
+```bash
+mcpkit-cli
+```
+
+After installation, the command you run is:
+
+```bash
+mcpkit
+```
+
+### npm
+
+```bash
+npm install -g mcpkit-cli
+mcpkit --help
+```
+
+### Bun
+
+```bash
+bun add -g mcpkit-cli
+mcpkit --help
+```
+
+## Supported package managers during project creation
+
+`mcpkit init` supports:
+
+- `bun`
+- `npm`
+- `pnpm`
+
+The default is `bun` unless you pass `--package-manager`.
+
+If you do not have Bun installed yet, use an explicit package-manager flag:
+
+```bash
+mcpkit init my-server --template basic --package-manager npm --yes
+```
+
+## Verify your environment
+
+```bash
+mcpkit check-env
+```
+
+For machine-readable output:
+
+```bash
+mcpkit check-env --json
+```
+
+## Interactive and non-interactive modes
+
+### Interactive
+
+```bash
+mcpkit init
+```
+
+Interactive mode requires a TTY.
+
+### Non-interactive
+
+```bash
+mcpkit init my-server --template http --package-manager npm --yes
+```
+
+Current behavior in `--yes` mode:
+
+- a project name is required
+- `--template` is required
+- dependencies are installed automatically
+
+If you are ready to create a working project, continue with [Quick Start](/docs/quick-start).

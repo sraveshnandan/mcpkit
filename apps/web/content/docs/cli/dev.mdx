@@ -1,0 +1,53 @@
+---
+title: dev
+description: Start a local watch-mode workflow and optionally open MCP Inspector or Vitest watch.
+---
+
+## Purpose
+
+`mcpkit dev` runs `tsx` in watch mode for a chosen entry file.
+
+## Basic syntax
+
+```bash
+mcpkit dev
+```
+
+## Verified options
+
+- `-e, --entry <entry>` default: `src/index.ts`
+- `-t, --transport <transport>` default: `stdio`
+- `-p, --port <port>` default: `3100`
+- `--inspect`
+- `--test`
+- `-v, --verbose`
+
+## Examples
+
+```bash
+mcpkit dev --inspect
+```
+
+```bash
+mcpkit dev --entry src/index.ts --test
+```
+
+## Expected behavior
+
+- exits with an error if the entry file does not exist
+- runs `npx tsx watch <entry>`
+- sets `NODE_ENV=development`
+- sets `MCPKIT_TRANSPORT` and `MCPKIT_PORT`
+- `--inspect` opens `https://modelcontextprotocol.io/inspector`
+- if `--transport http` is used with `--inspect`, the inspector URL includes `http://localhost:<port>/mcp`
+- `--test` starts `npx vitest --watch` in parallel
+
+## Current caveat
+
+The generated HTTP templates read `PORT`, not `MCPKIT_PORT`. Do not assume `mcpkit dev --port` automatically changes the scaffolded HTTP template port without additional code changes.
+
+## Related commands
+
+- [test](/docs/cli/test)
+- [doctor](/docs/cli/doctor)
+- [MCP Inspector guide](/docs/guides/mcp-inspector)

@@ -1,0 +1,56 @@
+---
+title: ship
+description: Run the release-oriented flow for tests, build, version bump, and publish.
+---
+
+## Purpose
+
+`mcpkit ship` is the current release helper.
+
+## Basic syntax
+
+```bash
+mcpkit ship
+```
+
+## Verified options
+
+- `-b, --bump <bump>` default: `patch`
+- `--dry-run`
+- `-v, --verbose`
+
+Supported bump values:
+
+- `patch`
+- `minor`
+- `major`
+
+## Expected behavior
+
+The command:
+
+1. reads the current package version
+2. detects the package manager from `package.json` metadata or lockfiles
+3. prompts for confirmation
+4. runs tests
+5. runs a build
+6. bumps `package.json`
+7. publishes with the detected package manager command
+
+## Dry run behavior
+
+`--dry-run` keeps the flow visible without writing or publishing.
+
+## Package-manager detection
+
+The implementation can detect:
+
+- `bun`
+- `pnpm`
+- `yarn`
+- `npm`
+
+## Related commands
+
+- [build](/docs/cli/build)
+- [Publishing guide](/docs/guides/publishing)

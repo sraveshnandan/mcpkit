@@ -1,0 +1,47 @@
+---
+title: build
+description: Run a production build step for the current project.
+---
+
+## Purpose
+
+`mcpkit build` wraps a TypeScript build flow.
+
+## Basic syntax
+
+```bash
+mcpkit build
+```
+
+## Verified options
+
+- `-o, --outDir <outDir>` default: `dist`
+- `--no-clean`
+- `--dry-run`
+- `-v, --verbose`
+
+## Examples
+
+```bash
+mcpkit build
+```
+
+```bash
+mcpkit build --outDir dist --no-clean
+```
+
+## Expected behavior
+
+- resolves the chosen output directory
+- removes that directory unless `--no-clean` is used
+- runs `npx tsc`
+- reports counts of `.js` and `.d.ts` files if the output directory exists afterward
+
+## Important caveat
+
+The command accepts `--outDir`, but the actual compile step is still `npx tsc`. That means the final emitted output directory still depends on the project's `tsconfig.json`, not only on this flag.
+
+## Related commands
+
+- [ship](/docs/cli/ship)
+- [Building for production](/docs/guides/building-for-production)

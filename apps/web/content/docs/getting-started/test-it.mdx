@@ -1,0 +1,45 @@
+---
+title: Test it
+description: Use the generated package scripts and the CLI test command without assuming more than the repository currently implements.
+---
+
+The generated projects include Vitest-based test scripts.
+
+## Generated project scripts
+
+For `basic`, `http`, and `auth`:
+
+```json
+"test": "vitest run",
+"test:watch": "vitest"
+```
+
+For `full`, the same scripts exist and there is also:
+
+```json
+"validate": "tsc --noEmit && vitest run"
+```
+
+## Run tests in the generated project
+
+```bash
+npm run test
+```
+
+## Use the CLI test command
+
+```bash
+mcpkit test
+```
+
+Verified options:
+
+- `--watch`
+- `--coverage`
+- `--verbose`
+
+Current implementation detail: `mcpkit test` shells out to `npx vitest` or `npx vitest run`.
+
+## Recommended practice
+
+Inside a generated project, prefer the package scripts first because they are visible in the scaffold and remain usable even if you stop using the global CLI.

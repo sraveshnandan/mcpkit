@@ -1,0 +1,28 @@
+---
+title: FAQ
+description: Common adoption questions answered from the current repository state.
+---
+
+## Is mcpkit only for local MCP servers?
+
+No. The `http`, `auth`, and `full` templates generate HTTP-based servers using Streamable HTTP.
+
+## Which client config files are generated automatically?
+
+Only `.vscode/mcp.json` is generated automatically by the templates today.
+
+## Does mcpkit support shell completions?
+
+Yes. `bash`, `zsh`, and `fish` are supported by the `completions` command.
+
+## Does the docs command generate a full docs site?
+
+No. The current `docs` command writes a single `api.md` file.
+
+## Does mcpkit do deep validation of my MCP server?
+
+Not yet. The current `validate` command uses heuristic string checks against a source file.
+
+## Can I publish with package managers other than npm?
+
+Yes. The `ship` command can detect `bun`, `pnpm`, `yarn`, or `npm` for publishing.

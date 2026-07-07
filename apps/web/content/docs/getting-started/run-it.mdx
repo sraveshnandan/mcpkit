@@ -1,0 +1,52 @@
+---
+title: Run it
+description: Start the generated server and understand the difference between generated project scripts and the CLI helper commands.
+---
+
+After generation, the printed next step is the generated project script:
+
+```bash
+cd hello-mcp
+npm run dev
+```
+
+## Why the docs use project scripts first
+
+The generated project already contains a `dev` script in `package.json`.
+
+For `basic`, `http`, and `auth`, it is:
+
+```json
+"dev": "tsx watch src/index.ts"
+```
+
+For `full`, it is the same.
+
+## What you should expect
+
+### `basic`
+
+The server logs a stdio startup message.
+
+### `http`, `auth`, `full`
+
+The generated code listens on:
+
+```ts
+process.env.PORT || 3100
+```
+
+and exposes `/mcp`, plus other routes depending on the template.
+
+## About `mcpkit dev`
+
+The CLI also provides a `dev` command.
+
+Verified behavior:
+
+- runs `npx tsx watch <entry>`
+- can open the official MCP Inspector with `--inspect`
+- can start a Vitest watcher with `--test`
+- sets `MCPKIT_TRANSPORT` and `MCPKIT_PORT`
+
+Current caveat: the generated templates do **not** read `MCPKIT_PORT`; the HTTP templates read `PORT` instead. So the generated project scripts are the most predictable way to run the scaffold as-is.

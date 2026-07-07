@@ -1,0 +1,35 @@
+---
+title: Building for production
+description: Build current mcpkit projects with the generated scripts and the CLI wrapper.
+---
+
+## Generated project script
+
+Every template includes:
+
+```bash
+npm run build
+```
+
+which runs:
+
+```bash
+tsc
+```
+
+## CLI wrapper
+
+```bash
+mcpkit build
+```
+
+## What to check after building
+
+- `dist/` exists
+- JavaScript output files were emitted
+- declaration files were emitted where expected
+- your client config still points at the right runtime entry
+
+## Caveat about `--outDir`
+
+The CLI accepts `--outDir`, but the real emit location is still driven by the project `tsconfig.json`.

@@ -1,0 +1,46 @@
+---
+title: check-env
+description: Verify local environment prerequisites and basic project readiness.
+---
+
+## Purpose
+
+`mcpkit check-env` checks the local toolchain and current directory.
+
+## Basic syntax
+
+```bash
+mcpkit check-env
+```
+
+## Verified options
+
+- `--json`
+- `-v, --verbose`
+
+## Example
+
+```bash
+mcpkit check-env --json
+```
+
+## What it checks
+
+- Node.js version
+- `npm`
+- `bun`
+- `pnpm`
+- `package.json`
+- `@modelcontextprotocol/sdk`
+- TypeScript installation
+- `src/` directory presence
+
+## Output modes
+
+- text mode for human-readable status lines
+- JSON mode with `checks` and a `summary`
+
+## Related commands
+
+- [doctor](/docs/cli/doctor)
+- [Environment configuration](/docs/guides/environment-configuration)
