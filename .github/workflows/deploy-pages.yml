@@ -1,4 +1,4 @@
-name: Deploy mcpkit.js.org
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -29,12 +29,10 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build static site for mcpkit.js.org
-        run: bun run --filter @mcpkit/web build:custom
+      - name: Build static site for GitHub Pages
+        run: bun run --filter @mcpkit/web build:pages
         env:
           GITHUB_PAGES: 'true'
-          CUSTOM_DOMAIN: 'true'
-          NEXT_PUBLIC_SITE_URL: 'https://mcpkit.js.org'
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
