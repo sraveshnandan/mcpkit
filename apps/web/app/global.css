@@ -214,8 +214,8 @@ main > section:nth-of-type(6) {
 
 [data-docs-body] figure,
 .prose figure {
-  border: none;
-  box-shadow: none;
+  border: none !important;
+  box-shadow: none !important;
   background: color-mix(in srgb, var(--panel) 72%, transparent);
 }
 
