@@ -242,7 +242,7 @@ export default function HomePage() {
                 <div className="text-[0.72rem] font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
                   what happens
                 </div>
-                <ul className="mt-4 space-y-2 text-sm leading-7 text-(--muted)">
+                <ul className="mt-4 space-y-2 text-sm leading-7 text-[var(--muted)]">
                   <li>• installs the published CLI package</li>
                   <li>• scaffolds the verified `basic` template</li>
                   <li>• installs dependencies automatically in `--yes` mode</li>
@@ -262,11 +262,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="border-b border-(--line)">
+        <section className="border-b border-[var(--line)]">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
             <div className="space-y-4">
               <SectionLabel>Documentation bridge</SectionLabel>
-              <h2 className="font-display text-4xl tracking-[-0.04em] text-(--ink)">
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
                 Learn, reference, and troubleshoot without leaving the product experience.
               </h2>
               <p className="text-base leading-8 text-[var(--muted)]">
