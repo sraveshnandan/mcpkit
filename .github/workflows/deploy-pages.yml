@@ -33,6 +33,7 @@ jobs:
         run: bun run --filter @mcpkit/web build:pages
         env:
           GITHUB_PAGES: 'true'
+          CUSTOM_DOMAIN: 'true'
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
