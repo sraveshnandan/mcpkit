@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { Star } from 'lucide-react';
 
 import { Brand } from '@/components/brand';
-import { ButtonLink } from '@/components/ui/button-link';
 import { marketingLinks, site } from '@/lib/site';
+import { ButtonLink } from '@/components/ui/button-link';
 
 export function SiteHeader() {
   return (
@@ -23,13 +22,6 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <ButtonLink href="/docs/quick-start" variant="secondary" className="hidden sm:inline-flex">
-            Quick Start
-          </ButtonLink>
-          <ButtonLink href={site.githubStarUrl} variant="secondary" external className="hidden lg:inline-flex">
-            Star
-            <Star className="size-4" />
-          </ButtonLink>
           <ButtonLink href="https://www.npmjs.com/package/mcpkit-cli" external>
             Install
           </ButtonLink>
