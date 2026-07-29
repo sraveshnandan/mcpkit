@@ -210,6 +210,45 @@ export default function HomePage() {
         <section className="border-b border-[var(--line)]">
           <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="mb-10 max-w-3xl space-y-4">
+              <SectionLabel>Changelog</SectionLabel>
+              <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
+                What changed recently.
+              </h2>
+              <p className="text-base leading-8 text-[var(--muted)]">
+                This site and the CLI are updated frequently. Here are the latest changes.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-[1.5rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
+                <div className="mb-3 flex items-center gap-3">
+                  <span className="rounded-full border border-[var(--signal)]/30 bg-[var(--signal)]/10 px-2.5 py-0.5 text-xs font-medium text-[var(--signal-strong)]">latest</span>
+                  <span className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">0.2.0</span>
+                </div>
+                <p className="text-sm leading-7 text-[var(--muted)]">
+                  Landing page redesign, CommandBlock double-border fix, custom domain deployment fix, footer reorganization.
+                </p>
+              </div>
+              <div className="rounded-[1.5rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
+                <div className="mb-3 flex items-center gap-3">
+                  <span className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">0.1.1</span>
+                </div>
+                <p className="text-sm leading-7 text-[var(--muted)]">
+                  Initial CLI release with 4 templates, 10 commands, shell completions, doctor, ship, and js.org deployment.
+                </p>
+              </div>
+            </div>
+            <div className="mt-6">
+              <ButtonLink href={site.changelogUrl} variant="secondary">
+                View full changelog
+                <ArrowRight className="size-4" />
+              </ButtonLink>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[var(--line)]">
+          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-3xl space-y-4">
               <SectionLabel>MVP scope is intentional</SectionLabel>
               <h2 className="font-display text-4xl tracking-[-0.04em] text-[var(--ink)]">
                 Start with MCP structure, not auth or database opinions.

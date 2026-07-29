@@ -20,6 +20,7 @@ export function SiteFooter() {
             { label: 'CLI Reference', href: '/docs/cli', icon: Command },
             { label: 'Templates', href: '/docs/templates', icon: Boxes },
             { label: 'Guides', href: '/docs/guides', icon: BookOpenText },
+            { label: 'Changelog', href: site.changelogUrl },
             { label: 'Source code', href: site.githubUrl, icon: GitBranch, external: true },
             { label: 'npm package', href: site.npmUrl, icon: Package, external: true },
           ].map((item) => (

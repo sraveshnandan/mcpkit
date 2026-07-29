@@ -1,20 +1,30 @@
 ---
 title: Changelog
-description: Notable repository-backed details that shape the current public docs and web experience.
+description: Release history and notable changes for mcpkit and the documentation site.
 ---
 
-## Current documented state
+All notable changes to mcpkit are documented here. This changelog follows the repository state as it exists today, not from future roadmap assumptions.
 
-This changelog page is intentionally conservative until a formal release changelog format is established.
+## 0.2.0 — Website redesign & docs
 
-### Verified highlights reflected in this site
+- Landing page restructured to match startxkit design layout
+- CLI Commands section added to landing page showing all 10 commands
+- Create Flow section added explaining the init workflow
+- MVP Scope section added clarifying current capabilities vs roadmap
+- Double-border fix on code blocks (Fumadocs figure wrapper)
+- Custom domain deployment fix for mcpkit.js.org
+- Double-box fix on CommandBlock component
+- Footer reorganized with grouped navigation links
 
-- four templates are present: `basic`, `http`, `auth`, `full`
-- the intended default port is `3100`
-- `doctor` and `completions` are part of the current CLI surface
-- generated projects include `.vscode/mcp.json`
-- the docs avoid repeating outdated or broader README claims when the code says otherwise
+## 0.1.1 — Initial release
 
-## Recommended future improvement
-
-Once a release process is formalized, replace this page with a versioned changelog generated from actual releases or annotated tags.
+- CLI package published as `mcpkit-cli@0.1.1`
+- 4 templates: `basic`, `http`, `auth`, `full`
+- 10 CLI commands: `init`, `dev`, `build`, `test`, `validate`, `docs`, `check-env`, `ship`, `doctor`, `completions`
+- Interactive terminal hero demo on landing page
+- Dark mode default with violet accent theme
+- Shell completion support (bash, zsh, fish)
+- Doctor command with JSON output
+- Ship command with package manager detection
+- Website deployed via GitHub Pages
+- js.org custom domain at mcpkit.js.org

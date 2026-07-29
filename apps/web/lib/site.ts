@@ -34,6 +34,7 @@ export const site = {
   npmUrl: 'https://www.npmjs.com/package/mcpkit-cli',
   docsUrl: '/docs',
   quickStartUrl: '/docs/quick-start',
+  changelogUrl: '/docs/help/changelog',
 };
 
 export const marketingLinks: MarketingLink[] = [
