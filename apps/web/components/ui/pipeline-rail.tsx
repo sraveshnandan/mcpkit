@@ -14,7 +14,7 @@ export function PipelineRail({
         className
       )}
     >
-      <div className="flex flex-wrap items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+      <div className="flex flex-wrap items-center gap-3 text-xs font-medium uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
         {items.map((item, index) => (
           <div key={item} className="flex items-center gap-3">
             <span className="rounded-full border border-[var(--line)] bg-[var(--bg)] px-3 py-1.5 text-[var(--ink)]">

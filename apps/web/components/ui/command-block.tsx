@@ -8,15 +8,15 @@ export function CommandBlock({
   command: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-[1.5rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] shadow-[0_18px_60px_rgba(0,0,0,0.08)]">
-      <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-[var(--line)]">
-        <span className="text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
+    <div className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] shadow-sm">
+      <div className="flex h-10 items-center justify-between gap-3 border-b border-[var(--border)] px-4">
+        <span className="text-xs font-medium text-[var(--muted-foreground)]">
           {label}
         </span>
         <CopyButton value={command} />
       </div>
-      <div className="overflow-x-auto px-4 py-3 font-mono text-sm text-[var(--ink)]">
-        <span className="mr-3 text-[var(--transport)]">$</span>
+      <div className="overflow-x-auto px-4 py-3 font-mono text-sm text-[var(--foreground)]">
+        <span className="mr-2 text-[var(--primary)]">$</span>
         <span>{command}</span>
       </div>
     </div>

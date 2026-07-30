@@ -19,14 +19,14 @@ export function ButtonLink({
   external = false,
 }: ButtonLinkProps) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-transform duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--signal)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] motion-safe:hover:-translate-y-0.5';
+    'inline-flex h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]';
 
   const styles = {
     primary:
-      'border-[var(--signal)] bg-[var(--signal)] text-white shadow-[0_10px_30px_rgba(91,49,196,0.22)] hover:bg-[var(--signal-strong)]',
+      'bg-[var(--foreground)] text-[var(--background)] hover:-translate-y-0.5',
     secondary:
-      'border-[var(--line-strong)] bg-[var(--panel)] text-[var(--ink)] hover:border-[var(--signal)] hover:bg-[var(--panel-strong)]',
-    ghost: 'border-transparent bg-transparent text-[var(--muted)] hover:text-[var(--ink)]',
+      'border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--muted)]',
+    ghost: 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--muted)]',
   } as const;
 
   return (

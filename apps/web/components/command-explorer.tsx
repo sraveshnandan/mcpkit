@@ -63,7 +63,7 @@ export function CommandExplorer() {
   return (
     <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
       <div className="rounded-[1.75rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-4">
-        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
+        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted-foreground)]">
           command explorer
         </div>
         <div className="grid gap-2">
@@ -79,7 +79,7 @@ export function CommandExplorer() {
               }`}
             >
               <div className="font-mono text-sm text-[var(--ink)]">mcpkit {item.name}</div>
-              <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{item.summary}</p>
+              <p className="mt-1 text-sm leading-6 text-[var(--muted-foreground)]">{item.summary}</p>
             </button>
           ))}
         </div>

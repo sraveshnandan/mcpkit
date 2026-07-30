@@ -91,7 +91,7 @@ export function DocsQuickStart() {
   return (
     <div className="not-prose my-8 grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
       <div className="rounded-[1.75rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-4 shadow-[0_18px_60px_rgba(69,38,137,0.08)]">
-        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
+        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted-foreground)]">
           quick start guide
         </div>
         <div className="grid gap-2">
@@ -110,21 +110,21 @@ export function DocsQuickStart() {
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+                  <span className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
                     step {index + 1}
                   </span>
                   <span
                     className={`rounded-full px-2.5 py-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] ${
                       selected
                         ? 'bg-[color:color-mix(in_srgb,var(--signal)_16%,var(--bg))] text-[var(--signal-strong)]'
-                        : 'bg-[var(--panel)] text-[var(--muted)]'
+                        : 'bg-[var(--panel)] text-[var(--muted-foreground)]'
                     }`}
                   >
                     {item.label}
                   </span>
                 </div>
                 <div className="mt-2 text-sm font-semibold text-[var(--ink)]">{item.title}</div>
-                <p className="mt-1 text-sm leading-6 text-[var(--muted)]">{item.summary}</p>
+                <p className="mt-1 text-sm leading-6 text-[var(--muted-foreground)]">{item.summary}</p>
               </button>
             );
           })}
@@ -136,7 +136,7 @@ export function DocsQuickStart() {
           <div className="rounded-full border border-[color:color-mix(in_srgb,var(--signal)_25%,var(--line))] bg-[color:color-mix(in_srgb,var(--signal)_10%,var(--bg))] px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[var(--signal-strong)]">
             under two minutes
           </div>
-          <div className="rounded-full border border-[var(--line)] bg-[var(--bg-elevated)] px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+          <div className="rounded-full border border-[var(--line)] bg-[var(--bg-elevated)] px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
             repository-verified
           </div>
         </div>
@@ -144,7 +144,7 @@ export function DocsQuickStart() {
         <div className="space-y-4">
           <div>
             <h3 className="font-display text-3xl tracking-[-0.04em] text-[var(--ink)]">{step.title}</h3>
-            <p className="mt-2 max-w-3xl text-sm leading-7 text-[var(--muted)] sm:text-base">{step.summary}</p>
+            <p className="mt-2 max-w-3xl text-sm leading-7 text-[var(--muted-foreground)] sm:text-base">{step.summary}</p>
           </div>
 
           {step.commands.length > 0 ? (
@@ -156,12 +156,12 @@ export function DocsQuickStart() {
           ) : null}
 
           <div className="rounded-[1.35rem] border border-[var(--line)] bg-[var(--bg-elevated)] p-4 sm:p-5">
-            <div className="mb-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+            <div className="mb-3 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
               what to expect
             </div>
             <ul className="space-y-3">
               {step.points.map((point) => (
-                <li key={point} className="flex items-start gap-3 text-sm leading-7 text-[var(--muted)]">
+                <li key={point} className="flex items-start gap-3 text-sm leading-7 text-[var(--muted-foreground)]">
                   <CheckCircle2 className="mt-1 size-4 shrink-0 text-[var(--signal-strong)]" />
                   <span>{point}</span>
                 </li>

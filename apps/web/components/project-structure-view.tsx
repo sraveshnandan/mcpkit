@@ -15,7 +15,7 @@ export function ProjectStructureView() {
   return (
     <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
       <div className="rounded-[1.75rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
-        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
+        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted-foreground)]">
           generated structure / full template
         </div>
         <div className="space-y-2 font-mono text-sm text-[var(--ink)]">
@@ -27,10 +27,10 @@ export function ProjectStructureView() {
         </div>
       </div>
       <div className="rounded-[1.75rem] border border-[var(--line-strong)] bg-[var(--panel-strong)] p-5">
-        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted)]">
+        <div className="mb-4 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[var(--muted-foreground)]">
           why the files exist
         </div>
-        <div className="space-y-4 text-sm leading-7 text-[var(--muted)]">
+        <div className="space-y-4 text-sm leading-7 text-[var(--muted-foreground)]">
           <p>
             The generated structure is not just an entry file. The `full` template adds the surrounding
             workflow pieces developers usually end up hand-assembling later: auth wiring, logging,

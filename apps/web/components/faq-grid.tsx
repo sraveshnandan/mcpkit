@@ -68,14 +68,14 @@ export function FaqGrid() {
           <h3 className="font-display text-3xl tracking-[-0.04em] text-[var(--ink)] sm:text-[2.15rem]">
             Questions developers actually ask before running the command.
           </h3>
-          <p className="text-sm leading-7 text-[var(--muted)] sm:text-base">
+          <p className="text-sm leading-7 text-[var(--muted-foreground)] sm:text-base">
             The FAQ stays grounded in the current repository state: current commands, real templates, and real limitations.
           </p>
           <div className="flex flex-wrap gap-2 pt-1">
             {['templates', 'workflow', 'validation', 'transports'].map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-[var(--line)] bg-[var(--bg-elevated)] px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-[var(--muted)]"
+                className="rounded-full border border-[var(--line)] bg-[var(--bg-elevated)] px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-[var(--muted-foreground)]"
               >
                 {item}
               </span>
@@ -107,7 +107,7 @@ export function FaqGrid() {
                 onClick={() => setOpen(isOpen ? -1 : index)}
               >
                 <div className="space-y-2">
-                  <div className="inline-flex rounded-full border border-[var(--line)] bg-[var(--bg)] px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+                  <div className="inline-flex rounded-full border border-[var(--line)] bg-[var(--bg)] px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[var(--muted-foreground)]">
                     {item.tag}
                   </div>
                   <h3 className="text-base font-semibold tracking-tight text-[var(--ink)] sm:text-lg">
@@ -118,7 +118,7 @@ export function FaqGrid() {
                   className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-transform ${
                     isOpen
                       ? 'border-[var(--signal)] bg-[color:color-mix(in_srgb,var(--signal)_14%,var(--bg))] text-[var(--signal-strong)] rotate-180'
-                      : 'border-[var(--line)] bg-[var(--bg)] text-[var(--muted)]'
+                      : 'border-[var(--line)] bg-[var(--bg)] text-[var(--muted-foreground)]'
                   }`}
                 >
                   <ChevronDown className="size-4" />
@@ -127,7 +127,7 @@ export function FaqGrid() {
 
               {isOpen ? (
                 <div className="border-t border-[var(--line)] px-5 pb-5 pt-4">
-                  <p className="text-sm leading-7 text-[var(--muted)] sm:text-[0.96rem]">{item.answer}</p>
+                  <p className="text-sm leading-7 text-[var(--muted-foreground)] sm:text-[0.96rem]">{item.answer}</p>
                   <Link
                     href={item.href}
                     className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--signal-strong)] transition-colors hover:text-[var(--ink)]"

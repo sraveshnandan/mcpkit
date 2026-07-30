@@ -3,7 +3,6 @@
 import { CheckCircle2, CircleDashed, Sparkles } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
-import { TerminalWindow } from '@/components/ui/terminal-window';
 import { cn } from '@/lib/utils';
 
 const stages = [
@@ -57,29 +56,33 @@ export function HeroDemo() {
   const current = useMemo(() => stages[active] ?? fallbackStage, [active]);
 
   return (
-    <div className="grid gap-4 sm:gap-5">
-      <TerminalWindow
-        title="command pipeline / quick start"
-        className="border-[color:color-mix(in_srgb,var(--signal)_24%,var(--line-strong))] bg-[linear-gradient(180deg,rgba(10,8,16,0.98),rgba(16,12,25,0.98))] shadow-[0_30px_100px_rgba(32,18,62,0.34)]"
-      >
-        <div className="space-y-4 sm:space-y-5">
-          <div className="flex flex-wrap items-center gap-2 text-[0.68rem] uppercase tracking-[0.16em] text-white/45 sm:text-[0.72rem] sm:tracking-[0.18em]">
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1">quick start</span>
-            <span className="rounded-full border border-[rgba(159,103,255,0.24)] bg-[rgba(159,103,255,0.14)] px-2.5 py-1 text-[var(--signal-strong)]">
-              basic template
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1">npm path</span>
-          </div>
-
-          <div className="space-y-2 overflow-hidden">
-            <div className="text-white/45">$ npm install -g mcpkit-cli</div>
-            <div className="overflow-x-auto whitespace-nowrap text-[0.84rem] sm:text-[1rem]">
-              <span className="text-[var(--transport)]">$</span>{' '}
-              <span>mcpkit init hello-mcp --template basic --package-manager npm --yes</span>
+    <div className="relative mx-auto w-full max-w-3xl">
+      <span className="absolute -left-4 top-28 hidden rounded-md bg-amber-200 px-3 py-1 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-950/20 sm:block">
+        create
+      </span>
+      <span className="absolute -right-4 top-48 hidden rounded-md bg-indigo-400 px-3 py-1 text-xs font-semibold text-white shadow-lg shadow-indigo-950/30 sm:block">
+        client config
+      </span>
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#10111b] shadow-2xl shadow-black/30 ring-1 ring-white/5">
+        <div className="flex h-12 items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-4">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ffd166]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#06d6a0]" />
+          <span className="ml-4 flex h-full items-center gap-2 border-x border-white/10 bg-white/[0.05] px-4 text-xs text-white">
+            <Sparkles className="size-3.5 text-emerald-300" />
+            terminal
+          </span>
+        </div>
+        <div className="p-5 sm:p-6">
+          <div className="space-y-3 font-mono text-sm leading-7">
+            <div className="text-emerald-300">$ npm install -g mcpkit-cli</div>
+            <div className="overflow-x-auto whitespace-nowrap">
+              <span className="text-indigo-300">$</span>{' '}
+              <span className="text-zinc-200">mcpkit init hello-mcp --template basic --package-manager npm --yes</span>
             </div>
           </div>
 
-          <div className="grid gap-4 2xl:grid-cols-[0.94fr_1.06fr]">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <div className="grid gap-2.5">
               {stages.map((stage, index) => {
                 const done = index <= active;
@@ -93,93 +96,80 @@ export function HeroDemo() {
                     onFocus={() => setActive(index)}
                     onClick={() => setActive(index)}
                     className={cn(
-                      'grid gap-2.5 rounded-[1.2rem] border px-3 py-3 text-left transition-all duration-250 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--signal)] motion-safe:hover:-translate-y-0.5 sm:gap-3 sm:px-3.5',
+                      'grid gap-1.5 rounded-lg border px-3 py-2.5 text-left transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]',
                       selected
-                        ? 'border-[rgba(159,103,255,0.52)] bg-[linear-gradient(90deg,rgba(159,103,255,0.18),rgba(255,255,255,0.03))] shadow-[0_12px_35px_rgba(91,49,196,0.18)]'
+                        ? 'border-[#06d6a0]/50 bg-[#06d6a0]/10'
                         : done
-                          ? 'border-[rgba(159,103,255,0.22)] bg-[rgba(159,103,255,0.10)] text-white/92'
-                          : 'border-white/10 bg-white/[0.03] text-white/65 hover:border-white/14 hover:text-white/82'
+                          ? 'border-[#06d6a0]/20 bg-[#06d6a0]/5 text-zinc-200'
+                          : 'border-white/10 bg-white/[0.03] text-zinc-500 hover:border-white/20 hover:text-zinc-300'
                     )}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-3">
-                        <span className="mt-0.5 text-[var(--signal-strong)]">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-start gap-2.5">
+                        <span className="mt-0.5 text-emerald-300">
                           {done ? <CheckCircle2 className="size-4" /> : <CircleDashed className="size-4" />}
                         </span>
                         <div>
-                          <div className="text-sm font-medium tracking-tight text-white">{stage.title}</div>
-                          <div className="mt-1 text-[0.72rem] leading-5 text-white/55 sm:text-xs">{stage.note}</div>
+                          <div className="text-xs font-medium tracking-tight text-white">{stage.title}</div>
+                          <div className="mt-0.5 text-[0.68rem] leading-4 text-zinc-500">{stage.note}</div>
                         </div>
                       </div>
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-1 text-[0.68rem] uppercase tracking-[0.18em] text-white/48">
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-1.5 py-0.5 text-[0.62rem] uppercase tracking-wider text-zinc-500">
                         {index + 1}
                       </span>
-                    </div>
-                    <div className="pl-7 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--signal-strong)]/85 sm:text-[0.72rem] sm:tracking-[0.16em]">
-                      {stage.meta}
                     </div>
                   </button>
                 );
               })}
             </div>
 
-            <div className="grid gap-4">
-              <div className="rounded-[1.5rem] border border-[rgba(159,103,255,0.22)] bg-[linear-gradient(180deg,rgba(159,103,255,0.10),rgba(255,255,255,0.03))] p-4 sm:p-5">
-                <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-                  <div className="text-[0.72rem] font-medium uppercase tracking-[0.2em] text-white/52">
-                    active stage
-                  </div>
-                  <span className="rounded-full border border-[rgba(159,103,255,0.18)] bg-[rgba(159,103,255,0.12)] px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[var(--signal-strong)]">
-                    repository verified
-                  </span>
+            <div className="grid gap-3">
+              <div className="rounded-lg border border-white/10 bg-black/20 p-4">
+                <div className="mb-3 flex items-center gap-2 text-xs text-zinc-100">
+                  <Sparkles className="size-3.5 text-amber-200" />
+                  active stage
                 </div>
                 <div>
-                  <h3 className="font-display text-[1.6rem] leading-none tracking-[-0.04em] text-white sm:text-[2.05rem]">
+                  <h3 className="text-base font-semibold tracking-tight text-white">
                     {current.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-white/66 sm:text-[0.96rem] sm:leading-7">{current.detail}</p>
+                  <p className="mt-2 text-xs leading-5 text-zinc-400">{current.detail}</p>
                 </div>
-                <div className="mt-5 grid gap-3 grid-cols-2">
+                <div className="mt-4 grid grid-cols-2 gap-2.5">
                   {[
                     { label: 'template', value: 'basic' },
                     { label: 'transport', value: 'stdio' },
-                    { label: 'client config', value: '.vscode/mcp.json' },
-                    { label: 'package manager', value: 'npm' },
+                    { label: 'config', value: '.vscode/mcp.json' },
+                    { label: 'package', value: 'npm' },
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="rounded-[1rem] border border-white/10 bg-white/[0.03] px-4 py-3"
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2"
                     >
-                      <div className="text-[0.68rem] font-medium uppercase tracking-[0.18em] text-white/42">
+                      <div className="text-[0.62rem] font-medium uppercase tracking-wider text-zinc-500">
                         {item.label}
                       </div>
-                      <div className="mt-1 font-mono text-[0.82rem] text-white/92 sm:text-sm">{item.value}</div>
+                      <div className="mt-0.5 font-mono text-xs text-zinc-200">{item.value}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.03] p-4 text-white/84">
-                <div className="mb-2 flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.18em] text-white/45">
-                  <Sparkles className="size-3.5 text-[var(--signal-strong)]" />
+              <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-xs leading-5 text-zinc-300">
+                <div className="mb-1.5 flex items-center gap-2 text-[0.68rem] uppercase tracking-wider text-zinc-500">
+                  <Sparkles className="size-3 text-emerald-300" />
                   ready
                 </div>
-                <div className="space-y-1.5">
-                  <div>
-                    <span className="text-[var(--transport)]">$</span> cd hello-mcp
-                  </div>
-                  <div>
-                    <span className="text-[var(--transport)]">$</span> npm run dev
-                  </div>
-                  <div className="pt-2 text-[var(--signal-strong)]">hello-mcp MCP server running on stdio</div>
+                <div className="space-y-1 font-mono">
+                  <div><span className="text-emerald-300">$</span> cd hello-mcp</div>
+                  <div><span className="text-emerald-300">$</span> npm run dev</div>
+                  <div className="pt-1.5 text-emerald-300">hello-mcp MCP server running on stdio</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </TerminalWindow>
-
-
+      </div>
     </div>
   );
 }
