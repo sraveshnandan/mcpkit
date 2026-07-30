@@ -57,10 +57,10 @@ export function HeroDemo() {
 
   return (
     <div className="relative mx-auto w-full max-w-3xl">
-      <span className="absolute -left-4 top-28 hidden rounded-md bg-amber-200 px-3 py-1 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-950/20 sm:block">
+      <span className="absolute -left-4 top-28 hidden rounded-md bg-teal-400 px-3 py-1 text-xs font-semibold text-[#062a2e] shadow-lg shadow-teal-950/30 sm:block dark:bg-teal-300 dark:text-[#062a2e]">
         create
       </span>
-      <span className="absolute -right-4 top-48 hidden rounded-md bg-indigo-400 px-3 py-1 text-xs font-semibold text-white shadow-lg shadow-indigo-950/30 sm:block">
+      <span className="absolute -right-4 top-48 hidden rounded-md bg-violet-500 px-3 py-1 text-xs font-semibold text-white shadow-lg shadow-violet-950/30 sm:block dark:bg-violet-400 dark:text-[#1a0e2e]">
         client config
       </span>
       <div className="overflow-hidden rounded-xl border border-white/10 bg-[#10111b] shadow-2xl shadow-black/30 ring-1 ring-white/5">

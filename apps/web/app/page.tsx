@@ -72,18 +72,21 @@ export default function HomePage() {
           <div className="mx-auto max-w-6xl">
             <div className="rounded-[1.25rem] border border-[var(--border)]/70 bg-[var(--card)]/75 p-4 shadow-2xl shadow-zinc-950/10 backdrop-blur dark:bg-zinc-950/75 dark:shadow-black/30 sm:p-8 lg:p-12">
               <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-                <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--background)]/80 px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)] shadow-sm">
-                  <Terminal className="size-3.5 text-[var(--primary)]" />
+                <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--primary)]/30 bg-[var(--primary)]/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--primary)] shadow-sm dark:text-[var(--signal-strong)]">
+                  <Terminal className="size-3.5" />
                   MCP server generator CLI
                 </span>
-                <h1 className="max-w-5xl text-balance text-5xl font-semibold leading-[0.95] tracking-normal text-[var(--foreground)] sm:text-6xl lg:text-7xl">
-                  Build MCP servers with the{' '}
-                  <span className="bg-gradient-to-r from-amber-300 via-fuchsia-300 to-indigo-400 bg-clip-text text-transparent dark:from-amber-300 dark:via-fuchsia-300 dark:to-indigo-400">
-                    workflow already wired in.
+                <h1 className="max-w-5xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight text-[var(--foreground)] sm:text-6xl lg:text-7xl">
+                  Build{' '}
+                  <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-violet-500 bg-clip-text text-transparent dark:from-teal-300 dark:via-cyan-300 dark:to-violet-400">
+                    MCP servers
                   </span>
+                  {' '}with the workflow already wired in.
                 </h1>
                 <p className="mt-6 max-w-2xl text-pretty text-base leading-8 text-[var(--muted-foreground)] sm:text-lg">
-                  {site.tagline} Scaffold, develop, test, validate, diagnose, document, build, and ship from one toolkit instead of assembling the workflow yourself.
+                  {site.tagline}{' '}
+                  <span className="font-medium text-[var(--foreground)]/80">Scaffold, develop, test, validate, diagnose, document, build, and ship</span>{' '}
+                  from one toolkit instead of assembling the workflow yourself.
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
                   <ButtonLink href={site.quickStartUrl}>
